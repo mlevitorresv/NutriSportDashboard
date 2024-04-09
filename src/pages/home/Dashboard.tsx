@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const CustomersDetailsPage = () => {
+export const Dashboard = () => {
     return (
         <div>
-
+            
         </div>
     )
 }
