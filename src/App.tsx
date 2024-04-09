@@ -23,9 +23,11 @@ import { SuppliersPage } from './pages/suppliers/SuppliersPage';
 import { SuppliersDetailsPage } from './pages/suppliers/SuppliersDetailsPage';
 import { SuppliersCreatePage } from './pages/suppliers/SuppliersCreatePage';
 import { CommentsCreatePage } from './pages/comments/CommentsCreatePage';
+import { AuthProvider, useAuth } from './context/AuthProvider';
+import { Provider } from 'react-redux'
 
 function App() {
-  const user: Boolean = true;
+  const { user } = useAuth();
   return (
     <>
       <BrowserRouter>
@@ -81,5 +83,14 @@ function App() {
     </>
   )
 }
+
+
+const AppWithAuthProvider = () => (
+  <AuthProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </AuthProvider>
+);
 
 export default App
