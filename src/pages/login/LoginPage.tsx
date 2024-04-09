@@ -6,6 +6,7 @@ import { InputStyled } from '../../components/common/InputStyled'
 import { ButtonStyled } from '../../components/common/ButtonStyled'
 import { useAuth } from '../../context/AuthProvider'
 import { toast } from 'react-toastify'
+import { H1Styled } from '../../components/common/H1Styled'
 
 export const LoginPage = () => {
 
@@ -28,6 +29,7 @@ export const LoginPage = () => {
     e.preventDefault();
 
     const userData = { email: email, password: password }
+    console.log(userData)
     login(userData)
     if (!login)
       return toast.error('No se inició sesión, usuario o password incorrectos', {
@@ -48,7 +50,8 @@ export const LoginPage = () => {
     <>
       <PageFormStyled>
         <FormLoginStyled onSubmit={handleLogin}>
-          <Link to='/' className='loginForm__image'><img src="../assets/logo.JPG" alt="NutriSport logo" /></Link>
+          <H1Styled center={true}>Bienvenido al programa de gestión de </H1Styled>
+          <Link to='/' className='loginForm__image'><img src="src\assets\logo.JPG" alt="NutriSport logo" /></Link>
           <InputStyled type="email" name="emailInput" id="emailInput" placeholder='email@email.com' onChange={handleChangeEmail} />
           <InputStyled type="password" name="passInput" id="passInput" placeholder='password' onChange={handleChangePass} />
           <ButtonStyled type='submit'>SIGN IN</ButtonStyled>

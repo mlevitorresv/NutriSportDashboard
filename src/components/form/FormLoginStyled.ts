@@ -14,8 +14,8 @@ export const FormLoginStyled = styled.form`
     box-shadow: 10px 10px 10px #E23428;
 
     .loginForm__image{
-        width: 150px;
-        height: 150px;
+        // width: 150px;
+        // height: 150px;
         margin: 0 auto;
     }
 

@@ -13,3 +13,7 @@ export interface TfooterPropsInterface{
     itemsPerPage: number
     onPageChanged: Function
 }
+
+export interface H1PropsInterface{
+    center?: boolean
+}
