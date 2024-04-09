@@ -25,6 +25,7 @@ import { SuppliersCreatePage } from './pages/suppliers/SuppliersCreatePage';
 import { CommentsCreatePage } from './pages/comments/CommentsCreatePage';
 import { AuthProvider, useAuth } from './context/AuthProvider';
 import { Provider } from 'react-redux'
+import { store } from './app/store';
 
 function App() {
   const { user } = useAuth();
@@ -93,4 +94,4 @@ const AppWithAuthProvider = () => (
   </AuthProvider>
 );
 
-export default App
+export default AppWithAuthProvider

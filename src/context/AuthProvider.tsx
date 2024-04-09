@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { toast } from "react-toastify";
+import { apiRequest } from '../api/apiCall';
 
 
 interface AuthProviderInterface {
