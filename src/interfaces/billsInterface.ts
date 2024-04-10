@@ -1,4 +1,5 @@
 export interface BillsInterface{
+    _id: string | undefined,
     beneficiary: string
     description: string
     type: string
