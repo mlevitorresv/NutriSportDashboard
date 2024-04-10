@@ -25,14 +25,14 @@ export const LoginPage = () => {
   }
 
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const userData = { email: email, password: password }
-    console.log(userData)
-    login(userData)
-    if (!login)
-      return toast.error('No se inició sesión, usuario o password incorrectos', {
+    try {
+      await login(userData);
+    } catch (error) {
+      console.error('Error de autenticación:', error);
+      toast.error('Error al iniciar sesión. Por favor, intenta nuevamente más tarde.', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -42,8 +42,31 @@ export const LoginPage = () => {
         progress: undefined,
         theme: "colored",
       });
-
-    return navigate('/home');
+    }
+    if(!localStorage.getItem('token')){
+      toast.error('No se inició sesión, usuario o contraseña incorrectos', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }else{
+      navigate('/home');
+      toast.success('Sesión iniciada correctamente, ¡Bienvenido!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   }
 
   return (

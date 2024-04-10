@@ -26,6 +26,9 @@ import { CommentsCreatePage } from './pages/comments/CommentsCreatePage';
 import { AuthProvider, useAuth } from './context/AuthProvider';
 import { Provider } from 'react-redux'
 import { store } from './app/store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const { user } = useAuth();
@@ -81,6 +84,7 @@ function App() {
           ) : null}
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </>
   )
 }

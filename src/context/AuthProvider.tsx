@@ -24,7 +24,6 @@ const AuthContext = createContext<AuthContextValueInterface | undefined>(undefin
 export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children }) => {
     const [user, setUser] = useState<AuthProviderInterface | null>(null);
 
-
     const login = async (userDataToLogin: AuthProviderInterface) => {
         setUser(userDataToLogin);
         const loginData = {
@@ -35,17 +34,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
         try {
             const response = await apiRequest('login', 'POST', loginData, null);
             localStorage.setItem('token', response.token)
-
-            toast.success('Inicio de sesión exitoso', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            
         } catch (error: any) {
 
             console.error('Error al realizar el login:', error.message)
@@ -94,7 +83,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
-      throw new Error('useAuth must be used within an AuthProvider');
+        throw new Error('useAuth must be used within an AuthProvider');
     }
     return context;
-  };
+};
