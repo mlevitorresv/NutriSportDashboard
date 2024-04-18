@@ -42,11 +42,11 @@ export const customerSlice = createSlice({
             state.status = "fulfilled"
             state.data.push(...action.payload)
         })
-        .addCase(getCustomerListFromAPIThunk.rejected, (state, action) => {
+        .addCase(createCustomerToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"
             state.error = action.error.message
         })
-        .addCase(getCustomerListFromAPIThunk.pending, (state) => {
+        .addCase(createCustomerToAPIThunk.pending, (state) => {
             state.status = "pending"
         })
 
@@ -54,11 +54,11 @@ export const customerSlice = createSlice({
             state.status = "fulfilled"
             state.data = state.data.filter(customer => customer._id != action.payload._id)
         })
-        .addCase(getCustomerListFromAPIThunk.rejected, (state, action) => {
+        .addCase(deleteCustomerToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"
             state.error = action.error.message
         })
-        .addCase(getCustomerListFromAPIThunk.pending, (state) => {
+        .addCase(deleteCustomerToAPIThunk.pending, (state) => {
             state.status = "pending"
         })
     }

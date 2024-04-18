@@ -42,11 +42,11 @@ export const billSlice = createSlice({
             state.status = "fulfilled"
             state.data.push(...action.payload)
         })
-        .addCase(getBillListFromAPIThunk.rejected, (state, action) => {
+        .addCase(createBillToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"
             state.error = action.error.message
         })
-        .addCase(getBillListFromAPIThunk.pending, (state) => {
+        .addCase(createBillToAPIThunk.pending, (state) => {
             state.status = "pending"
         })
 
@@ -54,11 +54,11 @@ export const billSlice = createSlice({
             state.status = "fulfilled"
             state.data = state.data.filter(bill => bill._id != action.payload._id)
         })
-        .addCase(getBillListFromAPIThunk.rejected, (state, action) => {
+        .addCase(deleteBillToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"
             state.error = action.error.message
         })
-        .addCase(getBillListFromAPIThunk.pending, (state) => {
+        .addCase(deleteBillToAPIThunk.pending, (state) => {
             state.status = "pending"
         })
     }
