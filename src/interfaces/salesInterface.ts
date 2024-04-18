@@ -1,4 +1,5 @@
 export interface SaleInterface{
+    _id: string | undefined
     customer: string
     employee: string
     products: string
