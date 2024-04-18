@@ -14,7 +14,18 @@ export const getBillListFromAPIThunk = createAsyncThunk<BillsInterface[], void, 
     }
 })
 
-export const createBillToAPIThunk = createAsyncThunk("bill/createBillToApi", async (body: BillsInterface): Promise<BillsInterface[]> => {
+export const getBillFromAPIThunk = createAsyncThunk<BillsInterface[], string | undefined, { state: any, rejectValue: string }>("bills/getBillFromAPI", async(id): Promise<BillsInterface[]> => {
+    try{
+        const token = localStorage.getItem('token');
+        const response = await apiRequest(`bills/${id}`, 'GET', null, token);
+        const responseData = await response.json();
+        return responseData.bill;
+    }catch(error){
+        throw new Error('Error al obtener la factura desde la API')
+    }
+})
+
+export const createBillToAPIThunk = createAsyncThunk("bills/createBillToApi", async (body: BillsInterface): Promise<BillsInterface[]> => {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest('bills', 'POST', body, token);
@@ -25,7 +36,7 @@ export const createBillToAPIThunk = createAsyncThunk("bill/createBillToApi", asy
     }
 })
 
-export const deleteBillToAPIThunk = createAsyncThunk<BillsInterface, string, { state: any, rejectValue: string }>("bill/deleteBillToApi", async (id: any): Promise<BillsInterface> => {
+export const deleteBillToAPIThunk = createAsyncThunk<BillsInterface, string, { state: any, rejectValue: string }>("bills/deleteBillToApi", async (id: any): Promise<BillsInterface> => {
     try {
         const token = localStorage.getItem('token');
         const response = await apiRequest(`bills/${id}`, 'DELETE', null, token);

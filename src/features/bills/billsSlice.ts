@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BillSliceInitialStateInterface } from "../../interfaces/billsInterface";
-import { createBillToAPIThunk, deleteBillToAPIThunk, getBillListFromAPIThunk } from "./billsThunk";
+import { BillSliceInitialStateInterface, BillsInterface } from "../../interfaces/billsInterface";
+import { createBillToAPIThunk, deleteBillToAPIThunk, getBillFromAPIThunk, getBillListFromAPIThunk } from "./billsThunk";
+import { RootState } from "../../app/store";
 
 const initialState: BillSliceInitialStateInterface = {
     data: [],
@@ -22,6 +23,18 @@ export const billSlice = createSlice({
             state.error = action.error.message
         })
         .addCase(getBillListFromAPIThunk.pending, (state) => {
+            state.status = "pending"
+        })
+
+        builder.addCase(getBillFromAPIThunk.fulfilled, (state, action) => {
+            state.status = "fulfilled"
+            state.data = action.payload
+        })
+        .addCase(getBillFromAPIThunk.rejected, (state, action) => {
+            state.status = "rejected"
+            state.error = action.error.message
+        })
+        .addCase(getBillFromAPIThunk.pending, (state) => {
             state.status = "pending"
         })
 
@@ -50,3 +63,12 @@ export const billSlice = createSlice({
         })
     }
 })
+
+export const getBillData = (state: RootState): BillsInterface[] => state.bill.data;
+export const getBillById = (state: RootState, id: String): BillsInterface | undefined=> state.bill.data.find((bill: BillsInterface) => bill._id === id);
+export const getBillStatus = (state: RootState): string => state.bill.status;
+export const getBillError  = (state: RootState): string | undefined => state.bill.error;
+
+
+
+
