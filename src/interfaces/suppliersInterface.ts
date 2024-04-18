@@ -1,4 +1,5 @@
 export interface SupplierInterface{
+    _id: string | undefined
     name: string
     postalCode: number
     phone: string
