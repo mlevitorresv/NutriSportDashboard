@@ -1,4 +1,5 @@
 export interface EmployeeInterface{
+    _id: string | undefined
     name: string
     photo: string
     birth: Date
