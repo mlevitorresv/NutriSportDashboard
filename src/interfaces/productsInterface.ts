@@ -1,4 +1,5 @@
 export interface ProductInterface{
+    _id: string | undefined
     name: string
     description: string
     SKU: string
