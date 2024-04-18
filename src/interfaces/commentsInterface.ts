@@ -1,4 +1,5 @@
 export interface CommentInterface {
+    _id: string | undefined,
     name: string
     email: string
     comment: string
