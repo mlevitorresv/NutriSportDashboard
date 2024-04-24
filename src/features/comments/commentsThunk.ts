@@ -5,7 +5,7 @@ import { CommentInterface } from "../../interfaces/commentsInterface";
 
 export const getCommentListFromAPIThunk = createAsyncThunk<CommentInterface[], void, { state: any, rejectValue: string }>("comments/getCommentsFromApi",  async (): Promise<CommentInterface[]> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response  = await apiRequest('comments', 'GET', null, token);
         const responseData = await response.json();
         return responseData.comments;
@@ -16,7 +16,7 @@ export const getCommentListFromAPIThunk = createAsyncThunk<CommentInterface[], v
 
 export const getCommentFromAPIThunk = createAsyncThunk<CommentInterface[], string | undefined, { state: any, rejectValue: string }>("comments/getCommentFromAPI", async(id): Promise<CommentInterface[]> => {
     try{
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`comments/${id}`, 'GET', null, token);
         const responseData = await response.json();
         return responseData.comment;
@@ -27,7 +27,7 @@ export const getCommentFromAPIThunk = createAsyncThunk<CommentInterface[], strin
 
 export const deleteCommentToAPIThunk = createAsyncThunk<CommentInterface, string, { state: any, rejectValue: string }>("comments/deleteCommentToApi", async (id: any): Promise<CommentInterface> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`comments/${id}`, 'DELETE', null, token);
         const responseData = await response.json();
         return responseData.success;

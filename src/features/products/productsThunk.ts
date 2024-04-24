@@ -5,7 +5,7 @@ import { ProductInterface } from "../../interfaces/productsInterface";
 
 export const getProductListFromAPIThunk = createAsyncThunk<ProductInterface[], void, { state: any, rejectValue: string }>("products/getProductsFromApi",  async (): Promise<ProductInterface[]> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response  = await apiRequest('products', 'GET', null, token);
         const responseData = await response.json();
         return responseData.products;
@@ -16,7 +16,7 @@ export const getProductListFromAPIThunk = createAsyncThunk<ProductInterface[], v
 
 export const getProductFromAPIThunk = createAsyncThunk<ProductInterface[], string | undefined, { state: any, rejectValue: string }>("products/getProductFromAPI", async(id): Promise<ProductInterface[]> => {
     try{
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`products/${id}`, 'GET', null, token);
         const responseData = await response.json();
         return responseData.product;
@@ -27,7 +27,7 @@ export const getProductFromAPIThunk = createAsyncThunk<ProductInterface[], strin
 
 export const createProductToAPIThunk = createAsyncThunk("products/createProductToApi", async (body: ProductInterface): Promise<ProductInterface[]> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest('products', 'POST', body, token);
         const responseData = await response.json();
         return responseData.products;
@@ -38,7 +38,7 @@ export const createProductToAPIThunk = createAsyncThunk("products/createProductT
 
 export const deleteProductToAPIThunk = createAsyncThunk<ProductInterface, string, { state: any, rejectValue: string }>("products/deleteProductToApi", async (id: any): Promise<ProductInterface> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`products/${id}`, 'DELETE', null, token);
         const responseData = await response.json();
         return responseData.success;

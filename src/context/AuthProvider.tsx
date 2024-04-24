@@ -33,7 +33,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
 
         try {
             const response = await apiRequest('login', 'POST', loginData, null);
-            localStorage.setItem('token', response.token)
+            sessionStorage.setItem('token', response.token)
             
         } catch (error: any) {
 
@@ -54,7 +54,7 @@ export const AuthProvider: React.FC<AuthProviderPropsInterface> = ({ children })
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         toast.info('Sesión cerrada correctamente', {
             position: "top-center",
             autoClose: 5000,

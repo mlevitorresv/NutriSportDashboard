@@ -43,7 +43,7 @@ export const LoginPage = () => {
         theme: "colored",
       });
     }
-    if(!localStorage.getItem('token')){
+    if(!sessionStorage.getItem('token')){
       toast.error('No se inició sesión, usuario o contraseña incorrectos', {
         position: "top-center",
         autoClose: 5000,

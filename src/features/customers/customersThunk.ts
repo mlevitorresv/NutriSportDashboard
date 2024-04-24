@@ -5,7 +5,7 @@ import { CustomerInterface } from "../../interfaces/customersInterface";
 
 export const getCustomerListFromAPIThunk = createAsyncThunk<CustomerInterface[], void, { state: any, rejectValue: string }>("customers/getCustomersFromApi",  async (): Promise<CustomerInterface[]> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response  = await apiRequest('customers', 'GET', null, token);
         const responseData = await response.json();
         return responseData.customers;
@@ -16,7 +16,7 @@ export const getCustomerListFromAPIThunk = createAsyncThunk<CustomerInterface[],
 
 export const getCustomerFromAPIThunk = createAsyncThunk<CustomerInterface[], string | undefined, { state: any, rejectValue: string }>("customers/getCustomerFromAPI", async(id): Promise<CustomerInterface[]> => {
     try{
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`customers/${id}`, 'GET', null, token);
         const responseData = await response.json();
         return responseData.customer;
@@ -27,7 +27,7 @@ export const getCustomerFromAPIThunk = createAsyncThunk<CustomerInterface[], str
 
 export const createCustomerToAPIThunk = createAsyncThunk("customers/createCustomerToApi", async (body: CustomerInterface): Promise<CustomerInterface[]> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest('customers', 'POST', body, token);
         const responseData = await response.json();
         return responseData.customers;
@@ -38,7 +38,7 @@ export const createCustomerToAPIThunk = createAsyncThunk("customers/createCustom
 
 export const deleteCustomerToAPIThunk = createAsyncThunk<CustomerInterface, string, { state: any, rejectValue: string }>("customers/deleteCustomerToApi", async (id: any): Promise<CustomerInterface> => {
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await apiRequest(`customers/${id}`, 'DELETE', null, token);
         const responseData = await response.json();
         return responseData.success;
