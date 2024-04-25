@@ -7,7 +7,7 @@ export const Tfooter = (props: TfooterPropsInterface) => {
     const itemsPerPage = 10;
     const endIndex = Math.min(props.currentPage * itemsPerPage, props.items)
 
-    const handleChangePage = (data) => {
+    const handleChangePage = (data: any) => {
         const selectedPage = data.selected +1;
         props.onPageChanged(selectedPage);
     }

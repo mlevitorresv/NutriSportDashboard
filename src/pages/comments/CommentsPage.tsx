@@ -32,7 +32,7 @@ export const CommentsPage = () => {
         else if (commentListStatus === "pending")
             setSpinner(true)
         else if (commentListStatus === "fulfilled") {
-            let comments: React.JSX.Element[] = []
+            let components: React.JSX.Element[] = []
             let sortedList: CommentInterface[] = commentListData.slice()
 
             if (selectedSort === 'newest')
@@ -45,7 +45,7 @@ export const CommentsPage = () => {
 
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((comment: CommentInterface) => {
-                comments.push(
+                components.push(
                     <TrStyled>
                         <td>
                             <PhotoDataDiv data={'#' + comment._id} />
@@ -54,7 +54,7 @@ export const CommentsPage = () => {
                             <PhotoDataDiv data={comment.date.toString()} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={comment.name} />
+                            <PhotoDataDiv data={comment.email} />
                         </td>
                         <td >
                             <PhotoDataDiv className='comment' data={comment.comment} />
@@ -65,7 +65,8 @@ export const CommentsPage = () => {
                     </TrStyled>
                 )
             })
-
+            setSpinner(false)
+            setCommentList(components)
         }
     }, [dispatch, commentListData, commentListStatus, selectedSort, currentPage])
 
@@ -100,15 +101,14 @@ export const CommentsPage = () => {
                     <tbody>
                         {commentList}
                     </tbody>
-
-                    <Tfooter
-                        currentPage={currentPage}
-                        onPageChanged={handlePageChange}
-                        items={(commentListData as CommentInterface[]).length}
-                        itemsPerPage={itemsPerPage}
-                    />
                 </TableGuestStyled>
             }
+            <Tfooter
+                currentPage={currentPage}
+                onPageChanged={handlePageChange}
+                items={(commentListData as CommentInterface[]).length}
+                itemsPerPage={itemsPerPage}
+            />
         </>
     )
 }
