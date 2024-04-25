@@ -7,6 +7,8 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdOutlineChat } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { FaTrashAlt } from "react-icons/fa";
+
 
 
 
@@ -45,5 +47,9 @@ export const ChatStyledIcon = styled(MdOutlineChat)`
 `
 
 export const LogOutStyledIcon = styled(RiLogoutBoxLine)`
+    ${sharedIconStyle}
+`
+
+export const TrashStyledIcon = styled(FaTrashAlt)`
     ${sharedIconStyle}
 `

@@ -30,7 +30,7 @@ export interface GuestCheckPropsInterface{
     hour: string
 }
 
-export interface GuestDivPropsInterface{
+export interface PhotoDataDivPropsInterface{
     color?: string
     data: React.JSX.Element | string
     className?: string
