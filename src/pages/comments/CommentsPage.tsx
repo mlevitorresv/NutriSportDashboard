@@ -26,6 +26,7 @@ export const CommentsPage = () => {
     const [spinner, setSpinner] = useState<boolean>(true);
     const [currentPage, setCurrentPage] = useState<number>(1)
     const itemsPerPage = 10;
+    const [searchDescription, setSearchDescription] = useState<string>('')
 
 
     useEffect(() => {
@@ -45,6 +46,12 @@ export const CommentsPage = () => {
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
 
+            if (searchDescription.length > 0){
+                sortedList = sortedList.filter((comment: CommentInterface) => {
+                    return comment.comment.toLowerCase().includes(searchDescription.toLowerCase())
+                })
+            }
+            
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((comment: CommentInterface) => {
                 components.push(
@@ -70,7 +77,7 @@ export const CommentsPage = () => {
             setSpinner(false)
             setCommentList(components)
         }
-    }, [dispatch, commentListData, commentListStatus, selectedSort, currentPage])
+    }, [dispatch, commentListData, commentListStatus, selectedSort, currentPage, searchDescription])
 
 
     const handlePageChange = (page: number) => {
@@ -79,7 +86,7 @@ export const CommentsPage = () => {
 
     const handleRemoveComment = async (commentId: string | undefined) => {
         try {
-            if(commentId){
+            if (commentId) {
                 await dispatch(deleteCommentToAPIThunk(commentId))
                 toast.info('Comentario eliminado', {
                     position: "top-center",
@@ -114,6 +121,7 @@ export const CommentsPage = () => {
                 <InputStyled
                     type='secondary'
                     placeholder='Find by comment'
+                    onChange={(e) => setSearchDescription(e.target.value)}
                 />
                 <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
                     <option value="newest" selected>Newest</option>
