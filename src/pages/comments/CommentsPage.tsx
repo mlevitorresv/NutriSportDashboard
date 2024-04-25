@@ -46,12 +46,12 @@ export const CommentsPage = () => {
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
 
-            if (searchDescription.length > 0){
+            if (searchDescription.length > 0) {
                 sortedList = sortedList.filter((comment: CommentInterface) => {
                     return comment.comment.toLowerCase().includes(searchDescription.toLowerCase())
                 })
             }
-            
+
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((comment: CommentInterface) => {
                 components.push(
@@ -69,7 +69,7 @@ export const CommentsPage = () => {
                             <PhotoDataDiv className='comment' data={comment.comment} />
                         </td>
                         <td>
-                            <TrashStyledIcon onClick={() => handleRemoveComment(comment._id)} />
+                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveComment(comment._id)} />} />
                         </td>
                     </TrStyled>
                 )
