@@ -12,6 +12,7 @@ import { getCommentListFromAPIThunk } from '../../features/comments/commentsThun
 import { TrStyled } from '../../components/table/TrStyled'
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv'
 import { TrashStyledIcon } from '../../components/common/IconStyled'
+import { InputStyled } from '../../components/common/InputStyled'
 
 export const CommentsPage = () => {
 
@@ -79,12 +80,14 @@ export const CommentsPage = () => {
     return (
         <>
             <MenuStyled>
-                <div>
-                    <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
-                        <option value="newest" selected>Newest</option>
-                        <option value="oldest" selected>Oldest</option>
-                    </SelectStyled>
-                </div>
+                <InputStyled
+                    type='secondary'
+                    placeholder='Find by comment'
+                />
+                <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
+                    <option value="newest" selected>Newest</option>
+                    <option value="oldest" selected>Oldest</option>
+                </SelectStyled>
             </MenuStyled>
 
             {spinner ? <p>Loading...</p> :
