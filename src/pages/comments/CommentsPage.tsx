@@ -8,11 +8,12 @@ import { AppDispatch, useAppSelector } from '../../app/store'
 import { CommentInterface } from '../../interfaces/commentsInterface'
 import { getCommentData, getCommentError, getCommentStatus } from '../../features/comments/commentsSlice'
 import { useDispatch } from 'react-redux'
-import { getCommentListFromAPIThunk } from '../../features/comments/commentsThunk'
+import { deleteCommentToAPIThunk, getCommentListFromAPIThunk } from '../../features/comments/commentsThunk'
 import { TrStyled } from '../../components/table/TrStyled'
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv'
 import { TrashStyledIcon } from '../../components/common/IconStyled'
 import { InputStyled } from '../../components/common/InputStyled'
+import { toast } from 'react-toastify'
 
 export const CommentsPage = () => {
 
@@ -61,7 +62,7 @@ export const CommentsPage = () => {
                             <PhotoDataDiv className='comment' data={comment.comment} />
                         </td>
                         <td>
-                            <TrashStyledIcon />
+                            <TrashStyledIcon onClick={() => handleRemoveComment(comment._id)} />
                         </td>
                     </TrStyled>
                 )
@@ -74,6 +75,36 @@ export const CommentsPage = () => {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
+    }
+
+    const handleRemoveComment = async (commentId: string | undefined) => {
+        try {
+            if(commentId){
+                await dispatch(deleteCommentToAPIThunk(commentId))
+                toast.info('Comentario eliminado', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                })
+            }
+        } catch (error) {
+            console.log('error', error)
+            toast.error('No se pudo eliminar el comentario', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }
     }
 
 
