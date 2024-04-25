@@ -17,19 +17,28 @@ export const Layout = () => {
                 setTitle('Dashboard');
                 break;
 
-            case '/bookings':
-                setTitle('Guest List');
+            case '/bills':
+                setTitle('Bills List');
                 break;
 
-            case '/rooms':
-                setTitle('Rooms List');
+            case '/comments':
+                setTitle('Comments List');
                 break;
 
-            case '/users':
-                setTitle('Concierge List');
+            case '/customers':
+                setTitle('Customers List');
                 break;
-            case '/contact':
-                setTitle('Comments List')
+            case '/employees':
+                setTitle('Employees List')
+                break;
+            case '/products':
+                setTitle('Products List')
+                break;
+            case '/sales':
+                setTitle('Sales List')
+                break;
+            case '/suppliers':
+                setTitle('Suppliers List')
                 break;
         }
 
