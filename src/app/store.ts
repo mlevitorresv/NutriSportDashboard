@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { commentSlice } from "../features/comments/commentsSlice";
 
 
 
 export const store = configureStore({
     reducer: {
+        comment: commentSlice.reducer
     }
 })
 

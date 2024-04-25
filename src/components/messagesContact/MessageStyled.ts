@@ -13,7 +13,7 @@ export const MessageStyled = styled.div`
         display: flex;
         justify-content: space-between;
         width: 100%;
-        align-items: end;
+        align-items: center;
     }
 
     .comment{

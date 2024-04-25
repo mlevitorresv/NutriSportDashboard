@@ -15,8 +15,6 @@ export const MessagesContainer = () => {
   const commentListError = useAppSelector<string | undefined>(getCommentError)
   const commentListStatus = useAppSelector<string>(getCommentStatus)
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [commentList, setCommentList] = useState<React.JSX.Element[]>([]);
-
 
   useEffect(() => {
     if(commentListStatus === "idle"){
@@ -39,7 +37,7 @@ export const MessagesContainer = () => {
           onSwiper={(swiper) => console.log(swiper)}
       >
         {commentListData.map(comment => (
-          <SwiperSlide> <Message img={comment.photo} name={comment.name} join={comment.date} comment={comment.comment} /> </SwiperSlide>
+          <SwiperSlide> <Message email={comment.email} join={comment.date.toString().split('T')[0]} comment={comment.comment} /> </SwiperSlide>
         ))}
       </Swiper>
   );
