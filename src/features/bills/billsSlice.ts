@@ -64,10 +64,10 @@ export const billSlice = createSlice({
     }
 })
 
-export const getBillData = (state: RootState): BillsInterface[] => state.bill.data;
-export const getBillById = (state: RootState, id: String): BillsInterface | undefined=> state.bill.data.find((bill: BillsInterface) => bill._id === id);
-export const getBillStatus = (state: RootState): string => state.bill.status;
-export const getBillError  = (state: RootState): string | undefined => state.bill.error;
+export const getBillData = (state: RootState): BillsInterface[] => state.bills.data;
+export const getBillById = (state: RootState, id: String): BillsInterface | undefined=> state.bills.data.find((bill: BillsInterface) => bill._id === id);
+export const getBillStatus = (state: RootState): string => state.bills.status;
+export const getBillError  = (state: RootState): string | undefined => state.bills.error;
 
 
 
