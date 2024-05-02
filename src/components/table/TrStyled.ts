@@ -11,5 +11,6 @@ export const TrStyled = styled.tr<TrStyledPropsInterface>`
     border: 1px solid black;
     &:hover{
         cursor: pointer;
+        font-weight: bold;
     }
 `
