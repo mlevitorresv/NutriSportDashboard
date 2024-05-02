@@ -14,6 +14,7 @@ import { PhotoDataDiv } from '../../components/common/PhotoDataDiv'
 import { TrashStyledIcon } from '../../components/common/IconStyled'
 import { InputStyled } from '../../components/common/InputStyled'
 import { toast } from 'react-toastify'
+import { Spinner } from '../../components/spinner/Spinner'
 
 export const CommentsPage = () => {
 
@@ -129,7 +130,7 @@ export const CommentsPage = () => {
                 </SelectStyled>
             </MenuStyled>
 
-            {spinner ? <p>Loading...</p> :
+            {spinner ? <Spinner /> :
                 <TableGuestStyled className='rev'>
                     <TheadStyled>
                         <tr>

@@ -14,6 +14,8 @@ import { SelectStyled } from '../../components/table/SelectStyled';
 import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
+import { Spinner } from '../../components/spinner/Spinner';
+
 
 export const ProductsPage = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -146,7 +148,7 @@ export const ProductsPage = () => {
                 </SelectStyled>
             </MenuStyled>
 
-            {spinner ? <p>Loading...</p> :
+            {spinner ? <Spinner /> :
                 <TableGuestStyled className='rev'>
                     <TheadStyled>
                         <tr>

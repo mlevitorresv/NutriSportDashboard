@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { CommentInterface } from '../../interfaces/commentsInterface'
 import { getCommentData, getCommentError, getCommentStatus } from '../../features/comments/commentsSlice'
 import { getCommentListFromAPIThunk } from '../../features/comments/commentsThunk'
+import { Spinner } from '../spinner/Spinner'
 
 export const MessagesContainer = () => {
 
@@ -29,7 +30,7 @@ export const MessagesContainer = () => {
   })
 
   return (
-    spinner ? <p>Loading...</p> : 
+    spinner ? <Spinner /> : 
       <Swiper
           spaceBetween={50}
           slidesPerView={3}

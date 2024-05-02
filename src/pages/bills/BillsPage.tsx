@@ -16,6 +16,7 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { ListStyled } from '../../components/common/ListStyled';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
+import { Spinner } from '../../components/spinner/Spinner';
 
 export const BillsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -166,7 +167,7 @@ export const BillsPage = () => {
         </div>
       </MenuStyled>
 
-      {spinner ? <p>Loading...</p> :
+      {spinner ? <Spinner /> :
         <TableGuestStyled className='rev'>
           <TheadStyled>
             <tr>
