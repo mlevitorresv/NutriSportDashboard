@@ -68,6 +68,10 @@ export const getEmployeeData = (state: RootState): EmployeeInterface[] => state.
 export const getEmployeeById = (state: RootState, id: String): EmployeeInterface | undefined=> state.employee.data.find((employee: EmployeeInterface) => employee._id === id);
 export const getEmployeeStatus = (state: RootState): string => state.employee.status;
 export const getEmployeeError  = (state: RootState): string | undefined => state.employee.error;
+export const getMensEmployee = (state: RootState): EmployeeInterface[] => state.employee.data.filter((employee: EmployeeInterface) => employee.gender === 'male');
+export const getWomensEmployee = (state: RootState): EmployeeInterface[] => state.employee.data.filter((employee: EmployeeInterface) => employee.gender === 'female');
+export const getOthersEmployee = (state: RootState): EmployeeInterface[] => state.employee.data.filter((employee: EmployeeInterface) => employee.gender === 'other');
+
 
 
 

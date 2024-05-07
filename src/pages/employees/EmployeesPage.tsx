@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { EmployeeInterface } from '../../interfaces/employeesInterface';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '../../app/store';
-import { getEmployeeData, getEmployeeError, getEmployeeStatus } from '../../features/employees/employeesSlice';
+import { getEmployeeData, getEmployeeError, getEmployeeStatus, getMensEmployee, getOthersEmployee, getWomensEmployee } from '../../features/employees/employeesSlice';
 import { deleteEmployeeToAPIThunk, getEmployeeListFromAPIThunk } from '../../features/employees/employeesThunk';
 import { TrStyled } from '../../components/table/TrStyled';
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv';
@@ -15,11 +15,16 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
+import { ListStyled } from '../../components/common/ListStyled';
+import { ListElementStyled } from '../../components/common/ListElementStyled';
 
 
 export const EmployeesPage = () => {
     const dispatch: AppDispatch = useDispatch();
     const employeeListData = useAppSelector<EmployeeInterface[]>(getEmployeeData);
+    const employeeListMens = useAppSelector<EmployeeInterface[]>(getMensEmployee);
+    const employeeListWomens = useAppSelector<EmployeeInterface[]>(getWomensEmployee);
+    const employeeListOthers = useAppSelector<EmployeeInterface[]>(getOthersEmployee);
     const employeeListError = useAppSelector<string | undefined>(getEmployeeError);
     const employeeListStatus = useAppSelector<string>(getEmployeeStatus);
     const [employeeList, setEmployeeList] = useState<React.JSX.Element[]>([]);
@@ -28,6 +33,9 @@ export const EmployeesPage = () => {
     const [currentPage, setCurrentPage] = useState<number>(1)
     const itemsPerPage = 10;
     const [searchName, setSearchDescription] = useState<string>('')
+    const [showMens, setShowMens] = useState<boolean>(false)
+    const [showWomens, setShowWomens] = useState<boolean>(false)
+    const [showOthers, setShowOthers] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -37,7 +45,17 @@ export const EmployeesPage = () => {
             setSpinner(true)
         else if (employeeListStatus === "fulfilled") {
             let components: React.JSX.Element[] = []
-            let sortedList: EmployeeInterface[] = employeeListData.slice()
+            let sortedList: EmployeeInterface[] = []
+
+
+            if (showMens)
+                sortedList = employeeListMens.slice()
+            else if (showWomens)
+                sortedList = employeeListWomens.slice()
+            else if (showOthers)
+                sortedList = employeeListOthers.slice()
+            else
+                sortedList = employeeListData.slice()
 
             if (selectedSort === 'name')
                 sortedList.sort((a: EmployeeInterface, b: EmployeeInterface) => a.name.localeCompare(b.name))
@@ -88,7 +106,7 @@ export const EmployeesPage = () => {
             setSpinner(false)
             setEmployeeList(components)
         }
-    }, [dispatch, employeeListData, employeeListStatus, selectedSort, currentPage, searchName])
+    }, [dispatch, employeeListData, employeeListStatus, selectedSort, currentPage, searchName, showMens, showWomens, showOthers])
 
 
     const handlePageChange = (page: number) => {
@@ -134,12 +152,32 @@ export const EmployeesPage = () => {
                     placeholder="Find by employee's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
-                <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
-                    <option value="name" selected>Name</option>
-                    <option value="email">Email</option>
-                    <option value="job">Job</option>
-                    <option value="gender">Gender</option>
-                </SelectStyled>
+                <div>
+                    <ListStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(false), setShowOthers(false))}
+                            className={!showMens && !showWomens && !showOthers ? 'active' : ''}
+                        >All employees</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(true), setShowWomens(false), setShowOthers(false))}
+                            className={showMens && !showWomens && !showOthers ? 'active' : ''}
+                        >Mens</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(true), setShowOthers(false))}
+                            className={!showMens && showWomens && !showOthers ? 'active' : ''}
+                        >Womens</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(false), setShowOthers(true))}
+                            className={!showMens && !showWomens && showOthers ? 'active' : ''}
+                        >Others</ListElementStyled>
+                    </ListStyled>
+                    <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
+                        <option value="name" selected>Name</option>
+                        <option value="email">Email</option>
+                        <option value="job">Job</option>
+                        <option value="gender">Gender</option>
+                    </SelectStyled>
+                </div>
             </MenuStyled>
 
             {spinner ? <Spinner /> :
