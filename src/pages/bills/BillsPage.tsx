@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AppDispatch, useAppSelector } from '../../app/store';
 import { useDispatch } from 'react-redux';
 import { BillsInterface } from '../../interfaces/billsInterface';
-import { getBillData, getBillError, getBillStatus } from '../../features/bills/billsSlice';
+import { getBillData, getBillError, getBillStatus, getPayrollBill, getRentBill, getShopBill } from '../../features/bills/billsSlice';
 import { deleteBillToAPIThunk, getBillListFromAPIThunk } from '../../features/bills/billsThunk';
 import { TrStyled } from '../../components/table/TrStyled';
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv';
@@ -21,6 +21,9 @@ import { Spinner } from '../../components/spinner/Spinner';
 export const BillsPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const billListData = useAppSelector<BillsInterface[]>(getBillData);
+  const billListShop = useAppSelector<BillsInterface[]>(getShopBill);
+  const billListRent = useAppSelector<BillsInterface[]>(getRentBill);
+  const billListPayroll = useAppSelector<BillsInterface[]>(getPayrollBill);
   const billListError = useAppSelector<string | undefined>(getBillError);
   const billListStatus = useAppSelector<string>(getBillStatus);
   const [billList, setBillList] = useState<React.JSX.Element[]>([]);
@@ -42,7 +45,18 @@ export const BillsPage = () => {
       setSpinner(true)
     else if (billListStatus === "fulfilled") {
       let components: React.JSX.Element[] = []
-      let sortedList: BillsInterface[] = billListData.slice()
+      let sortedList: BillsInterface[] = [];
+
+      if(showShop)
+        sortedList = billListShop.slice()
+      else if(showRent)
+        sortedList = billListRent.slice()
+      else if(showPayroll)
+        sortedList = billListPayroll.slice()
+      else 
+        sortedList = billListData.slice()
+
+
 
       if (selectedSort === 'newest')
         sortedList.sort((a: BillsInterface, b: BillsInterface) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -92,7 +106,7 @@ export const BillsPage = () => {
       setSpinner(false)
       setBillList(components)
     }
-  }, [dispatch, billListData, billListStatus, selectedSort, currentPage, searchDescription])
+  }, [dispatch, billListData, billListStatus, selectedSort, currentPage, searchDescription, showShop, showRent, showPayroll])
 
 
   const handlePageChange = (page: number) => {
