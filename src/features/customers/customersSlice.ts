@@ -68,6 +68,10 @@ export const getCustomerData = (state: RootState): CustomerInterface[] => state.
 export const getCustomerById = (state: RootState, id: String): CustomerInterface | undefined=> state.customer.data.find((customer: CustomerInterface) => customer._id === id);
 export const getCustomerStatus = (state: RootState): string => state.customer.status;
 export const getCustomerError  = (state: RootState): string | undefined => state.customer.error;
+export const getMensCustomer = (state: RootState): CustomerInterface[] => state.customer.data.filter((customer: CustomerInterface) => customer.gender === 'male');
+export const getWomensCustomer = (state: RootState): CustomerInterface[] => state.customer.data.filter((customer: CustomerInterface) => customer.gender === 'female');
+export const getOthersCustomer = (state: RootState): CustomerInterface[] => state.customer.data.filter((customer: CustomerInterface) => customer.gender === 'other');
+
 
 
 

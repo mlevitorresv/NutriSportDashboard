@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getCustomerData, getCustomerError, getCustomerStatus } from '../../features/customers/customersSlice';
+import { getCustomerData, getCustomerError, getCustomerStatus, getMensCustomer, getOthersCustomer, getWomensCustomer } from '../../features/customers/customersSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '../../app/store';
 import { CustomerInterface } from '../../interfaces/customersInterface';
@@ -15,11 +15,16 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
+import { ListStyled } from '../../components/common/ListStyled';
+import { ListElementStyled } from '../../components/common/ListElementStyled';
 
 
 export const CustomersPage = () => {
     const dispatch: AppDispatch = useDispatch();
     const customerListData = useAppSelector<CustomerInterface[]>(getCustomerData);
+    const customerListMens = useAppSelector<CustomerInterface[]>(getMensCustomer);
+    const customerListWomens = useAppSelector<CustomerInterface[]>(getWomensCustomer);
+    const customerListOthers = useAppSelector<CustomerInterface[]>(getOthersCustomer);
     const customerListError = useAppSelector<string | undefined>(getCustomerError);
     const customerListStatus = useAppSelector<string>(getCustomerStatus);
     const [customerList, setCustomerList] = useState<React.JSX.Element[]>([]);
@@ -29,6 +34,10 @@ export const CustomersPage = () => {
     const itemsPerPage = 10;
     const [searchName, setSearchDescription] = useState<string>('')
 
+    const [ showMens, setShowMens ] = useState<boolean>(false)
+    const [ showWomens, setShowWomens ] = useState<boolean>(false)
+    const [ showOthers, setShowOthers ] = useState<boolean>(false)
+
 
     useEffect(() => {
         if (customerListStatus === "idle")
@@ -37,7 +46,16 @@ export const CustomersPage = () => {
             setSpinner(true)
         else if (customerListStatus === "fulfilled") {
             let components: React.JSX.Element[] = []
-            let sortedList: CustomerInterface[] = customerListData.slice()
+            let sortedList: CustomerInterface[] = []
+
+            if(showMens)
+                sortedList = customerListMens.slice()
+              else if(showWomens)
+                sortedList = customerListWomens.slice()
+              else if(showOthers)
+                sortedList = customerListOthers.slice()
+              else 
+                sortedList = customerListData.slice()
 
             if (selectedSort === 'name')
                 sortedList.sort((a: CustomerInterface, b: CustomerInterface) => a.name.localeCompare(b.name))
@@ -45,7 +63,7 @@ export const CustomersPage = () => {
                 sortedList.sort((a: CustomerInterface, b: CustomerInterface) => new Date(a.birth).getTime() - new Date(b.birth).getTime())
             if (selectedSort === 'ageMinor')
                 sortedList.sort((a: CustomerInterface, b: CustomerInterface) => new Date(b.birth).getTime() - new Date(a.birth).getTime())
-            
+
 
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = Math.min(startIndex + itemsPerPage, sortedList.length);
@@ -84,7 +102,7 @@ export const CustomersPage = () => {
             setSpinner(false)
             setCustomerList(components)
         }
-    }, [dispatch, customerListData, customerListStatus, selectedSort, currentPage, searchName])
+    }, [dispatch, customerListData, customerListStatus, selectedSort, currentPage, searchName, showMens, showWomens, showOthers])
 
 
     const handlePageChange = (page: number) => {
@@ -130,12 +148,32 @@ export const CustomersPage = () => {
                     placeholder="Find by customer's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
-                <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
-                    <option value="name" selected>Name</option>
-                    <option value="ageOlder">Age (Older)</option>
-                    <option value="ageMinor">Age (Minor)</option>
-                    <option value="email">Email</option>
-                </SelectStyled>
+                <div>
+                    <ListStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(false), setShowOthers(false))}
+                            className={!showMens && !showWomens && !showOthers ? 'active' : ''}
+                        >All customers</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(true), setShowWomens(false), setShowOthers(false))}
+                            className={showMens && !showWomens && !showOthers ? 'active' : ''}
+                        >Mens</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(true), setShowOthers(false))}
+                            className={!showMens && showWomens && !showOthers ? 'active' : ''}
+                        >Womens</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowMens(false), setShowWomens(false), setShowOthers(true))}
+                            className={!showMens && !showWomens && showOthers ? 'active' : ''}
+                        >Others</ListElementStyled>
+                    </ListStyled>
+                    <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
+                        <option value="name" selected>Name</option>
+                        <option value="ageOlder">Age (Older)</option>
+                        <option value="ageMinor">Age (Minor)</option>
+                        <option value="email">Email</option>
+                    </SelectStyled>
+                </div>
             </MenuStyled>
 
             {spinner ? <Spinner /> :
