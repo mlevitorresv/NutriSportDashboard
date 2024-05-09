@@ -68,6 +68,8 @@ export const getSupplierData = (state: RootState): SupplierInterface[] => state.
 export const getSupplierById = (state: RootState, id: String): SupplierInterface | undefined=> state.supplier.data.find((supplier: SupplierInterface) => supplier._id === id);
 export const getSupplierStatus = (state: RootState): string => state.supplier.status;
 export const getSupplierError  = (state: RootState): string | undefined => state.supplier.error;
+export const getSupplierProducts = (state: RootState): SupplierInterface[] => state.supplier.data.filter((supplier: SupplierInterface) => supplier.category === 'products');
+export const getSupplierRent = (state: RootState): SupplierInterface[] => state.supplier.data.filter((supplier: SupplierInterface) => supplier.category === 'rent');
 
 
 

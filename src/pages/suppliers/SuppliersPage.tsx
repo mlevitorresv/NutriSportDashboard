@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { SupplierInterface } from '../../interfaces/suppliersInterface';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '../../app/store';
-import { getSupplierData, getSupplierError, getSupplierStatus } from '../../features/suppliers/suppliersSlice';
+import { getSupplierData, getSupplierError, getSupplierProducts, getSupplierRent, getSupplierStatus } from '../../features/suppliers/suppliersSlice';
 import { deleteSupplierToAPIThunk, getSupplierListFromAPIThunk } from '../../features/suppliers/suppliersThunk';
 import { TrStyled } from '../../components/table/TrStyled';
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv';
@@ -15,11 +15,15 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
+import { ListElementStyled } from '../../components/common/ListElementStyled';
+import { ListStyled } from '../../components/common/ListStyled';
 
 
 export const SuppliersPage = () => {
     const dispatch: AppDispatch = useDispatch();
     const supplierListData = useAppSelector<SupplierInterface[]>(getSupplierData);
+    const supplierListProducts = useAppSelector<SupplierInterface[]>(getSupplierProducts);
+    const supplierListRent = useAppSelector<SupplierInterface[]>(getSupplierRent);
     const supplierListError = useAppSelector<string | undefined>(getSupplierError);
     const supplierListStatus = useAppSelector<string>(getSupplierStatus);
     const [supplierList, setSupplierList] = useState<React.JSX.Element[]>([]);
@@ -29,6 +33,8 @@ export const SuppliersPage = () => {
     const itemsPerPage = 10;
     const [searchName, setSearchDescription] = useState<string>('')
 
+    const [showProducts, setShowProducts] = useState<boolean>(false)
+    const [showRent, setShowRent] = useState<boolean>(false)
 
     useEffect(() => {
         if (supplierListStatus === "idle")
@@ -37,7 +43,14 @@ export const SuppliersPage = () => {
             setSpinner(true)
         else if (supplierListStatus === "fulfilled") {
             let components: React.JSX.Element[] = []
-            let sortedList: SupplierInterface[] = supplierListData.slice()
+            let sortedList: SupplierInterface[] = []
+
+            if (showProducts)
+                sortedList = supplierListProducts.slice()
+            else if (showRent)
+                sortedList = supplierListRent.slice()
+            else
+                sortedList = supplierListData.slice()
 
             if (selectedSort === 'name')
                 sortedList.sort((a: SupplierInterface, b: SupplierInterface) => a.name.localeCompare(b.name))
@@ -84,7 +97,7 @@ export const SuppliersPage = () => {
             setSpinner(false)
             setSupplierList(components)
         }
-    }, [dispatch, supplierListData, supplierListStatus, selectedSort, currentPage, searchName])
+    }, [dispatch, supplierListData, supplierListStatus, selectedSort, currentPage, searchName, showProducts, showRent])
 
 
     const handlePageChange = (page: number) => {
@@ -130,11 +143,29 @@ export const SuppliersPage = () => {
                     placeholder="Find by supplier's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
-                <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
-                    <option value="name" selected>Name</option>
-                    <option value="postalcode">PostalCode</option>
-                </SelectStyled>
+                <div>
+                <ListStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowProducts(false), setShowRent(false))}
+                            className={!showProducts && !showRent ? 'active' : ''}
+                        >All Suppliers</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowProducts(true), setShowRent(false))}
+                            className={showProducts && !showRent ? 'active' : ''}
+                        >Products Suppliers</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowProducts(false), setShowRent(true))}
+                            className={!showProducts && showRent ? 'active' : ''}
+                        >Rent Suppliers</ListElementStyled>
+                        
+                    </ListStyled>
+                    <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
+                        <option value="name" selected>Name</option>
+                        <option value="postalcode">PostalCode</option>
+                    </SelectStyled>
+                </div>
             </MenuStyled>
+
 
             {spinner ? <Spinner /> :
                 <TableGuestStyled className='rev'>
