@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { SaleInterface } from '../../interfaces/salesInterface';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '../../app/store';
-import { getSaleData, getSaleError, getSaleStatus } from '../../features/sales/salesSlice';
+import { getSaleCard, getSaleCash, getSaleData, getSaleError, getSaleStatus } from '../../features/sales/salesSlice';
 import { deleteSaleToAPIThunk, getSaleListFromAPIThunk } from '../../features/sales/salesThunk';
 import { TrStyled } from '../../components/table/TrStyled';
 import { PhotoDataDiv } from '../../components/common/PhotoDataDiv';
@@ -15,12 +15,16 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
+import { ListStyled } from '../../components/common/ListStyled';
+import { ListElementStyled } from '../../components/common/ListElementStyled';
 
 
 
 export const SalesPage = () => {
     const dispatch: AppDispatch = useDispatch();
     const saleListData = useAppSelector<SaleInterface[]>(getSaleData);
+    const saleListCard = useAppSelector<SaleInterface[]>(getSaleCard);
+    const saleListCash = useAppSelector<SaleInterface[]>(getSaleCash);
     const saleListError = useAppSelector<string | undefined>(getSaleError);
     const saleListStatus = useAppSelector<string>(getSaleStatus);
     const [saleList, setSaleList] = useState<React.JSX.Element[]>([]);
@@ -30,6 +34,9 @@ export const SalesPage = () => {
     const itemsPerPage = 10;
     const [searchName, setSearchDescription] = useState<string>('')
 
+    const [showCard, setShowCard] = useState<boolean>(false)
+    const [showCash, setShowCash] = useState<boolean>(false)
+
 
     useEffect(() => {
         if (saleListStatus === "idle")
@@ -38,7 +45,14 @@ export const SalesPage = () => {
             setSpinner(true)
         else if (saleListStatus === "fulfilled") {
             let components: React.JSX.Element[] = []
-            let sortedList: SaleInterface[] = saleListData.slice()
+            let sortedList: SaleInterface[] = []
+
+            if (showCard)
+                sortedList = saleListCard.slice()
+            else if (showCash)
+                sortedList = saleListCash.slice()
+            else
+                sortedList = saleListData.slice()
 
             if (selectedSort === 'customer')
                 sortedList.sort((a: SaleInterface, b: SaleInterface) => a.customer.localeCompare(b.customer))
@@ -87,7 +101,7 @@ export const SalesPage = () => {
             setSpinner(false)
             setSaleList(components)
         }
-    }, [dispatch, saleListData, saleListStatus, selectedSort, currentPage, searchName])
+    }, [dispatch, saleListData, saleListStatus, selectedSort, currentPage, searchName, showCard, showCash])
 
 
     const handlePageChange = (page: number) => {
@@ -133,11 +147,28 @@ export const SalesPage = () => {
                     placeholder="Find by sale's customer"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
-                <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
-                    <option value="customer" selected>Customer</option>
-                    <option value="employee">Employee</option>
-                    <option value="date">Date</option>
-                </SelectStyled>
+                <div>
+                    <ListStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowCard(false), setShowCash(false))}
+                            className={!showCard && !showCash ? 'active' : ''}
+                        >All Payments</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowCard(true), setShowCash(false))}
+                            className={showCard && !showCash ? 'active' : ''}
+                        >Card Payments</ListElementStyled>
+                        <ListElementStyled
+                            onClick={() => (setShowCard(false), setShowCash(true))}
+                            className={!showCard && showCash ? 'active' : ''}
+                        >Cash Payments</ListElementStyled>
+                        
+                    </ListStyled>
+                    <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
+                        <option value="customer" selected>Customer</option>
+                        <option value="employee">Employee</option>
+                        <option value="date">Date</option>
+                    </SelectStyled>
+                </div>
             </MenuStyled>
 
             {spinner ? <Spinner /> :

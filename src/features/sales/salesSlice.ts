@@ -68,6 +68,8 @@ export const getSaleData = (state: RootState): SaleInterface[] => state.sale.dat
 export const getSaleById = (state: RootState, id: String): SaleInterface | undefined=> state.sale.data.find((sale: SaleInterface) => sale._id === id);
 export const getSaleStatus = (state: RootState): string => state.sale.status;
 export const getSaleError  = (state: RootState): string | undefined => state.sale.error;
+export const getSaleCard = (state: RootState): SaleInterface[] => state.sale.data.filter((sale: SaleInterface) => sale.payMethod === 'creditCard');
+export const getSaleCash = (state: RootState): SaleInterface[] => state.sale.data.filter((sale: SaleInterface) => sale.payMethod === 'cash');
 
 
 
