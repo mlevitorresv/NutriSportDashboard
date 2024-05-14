@@ -93,6 +93,9 @@ export const CustomersPage = () => {
                         <td >
                             <PhotoDataDiv data={customer.birth.toString().split('T')[0]} />
                         </td>
+                        <td >
+                            <PhotoDataDiv data={customer.gender} />
+                        </td>
                         <td>
                             <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveCustomer(customer._id)} />} />
                         </td>
@@ -184,7 +187,8 @@ export const CustomersPage = () => {
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Postal code</th>
-                            <th>birth</th>
+                            <th>Birth</th>
+                            <th>Gender</th>
                         </tr>
                     </TheadStyled>
 
