@@ -77,7 +77,7 @@ export const CustomersPage = () => {
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((customer: CustomerInterface) => {
                 components.push(
-                    <TrStyled>
+                    <TrStyled title={'ID: ' + customer._id}>
                         <td>
                             <PhotoDataDiv data={customer.name} />
                         </td>

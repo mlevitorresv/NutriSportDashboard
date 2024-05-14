@@ -81,7 +81,7 @@ export const BillsPage = () => {
       const paginatedList = sortedList.slice(startIndex, endIndex);
       paginatedList.forEach((bill: BillsInterface) => {
         components.push(
-          <TrStyled>
+          <TrStyled title={'ID: ' + bill._id}>
             <td>
               <PhotoDataDiv data={bill.beneficiary} />
             </td>

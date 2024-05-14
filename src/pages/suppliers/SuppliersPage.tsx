@@ -69,7 +69,7 @@ export const SuppliersPage = () => {
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((supplier: SupplierInterface) => {
                 components.push(
-                    <TrStyled>
+                    <TrStyled title={'ID: ' + supplier._id}>
                         <td>
                             <PhotoDataDiv data={supplier.name} />
                         </td>
