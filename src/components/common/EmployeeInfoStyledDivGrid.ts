@@ -3,7 +3,7 @@ import { EmployeeInfoStyledDivGridInterface } from "../../interfaces/componentsI
 
 
 export const EmployeeInfoStyledDivGrid = styled.div<EmployeeInfoStyledDivGridInterface>`
-    width: 40%;
+    width:${props => props.col ? '100%' : '40%;'};
     display: grid;
     grid-template-columns: ${props => props.col ? 'repeat(' + props.col  + ', 1fr);' : 'repeat(2, 1fr);'}
     align-items: center;
