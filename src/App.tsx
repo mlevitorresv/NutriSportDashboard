@@ -3,12 +3,9 @@ import { LoginPage } from './pages/login/LoginPage'
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/home/DashboardPage';
 import { BillsPage } from './pages/bills/BillsPage';
-import { BillsDetailsPage } from './pages/bills/BillsDetailsPage';
 import { BillsCreatePage } from './pages/bills/BillsCreatePage';
 import { CommentsPage } from './pages/comments/CommentsPage';
-import { CommentsDetailsPage } from './pages/comments/CommentsDetailsPage';
 import { CustomersPage } from './pages/customers/CustomersPage';
-import { CustomersDetailsPage } from './pages/customers/CustomersDetailsPage';
 import { CustomersCreatePage } from './pages/customers/CustomersCreatePage';
 import { EmployeesPage } from './pages/employees/EmployeesPage';
 import { EmployeesDetailsPage } from './pages/employees/EmployeesDetailsPage';
@@ -17,10 +14,8 @@ import { ProductsPage } from './pages/products/ProductsPage';
 import { ProductsDetailsPage } from './pages/products/ProductsDetailsPage';
 import { ProductsCreatePage } from './pages/products/ProductsCreatePage';
 import { SalesPage } from './pages/sales/SalesPage';
-import { SalesDetailsPage } from './pages/sales/SalesDetailsPage';
 import { SalesCreatePage } from './pages/sales/SalesCreatePage';
 import { SuppliersPage } from './pages/suppliers/SuppliersPage';
-import { SuppliersDetailsPage } from './pages/suppliers/SuppliersDetailsPage';
 import { SuppliersCreatePage } from './pages/suppliers/SuppliersCreatePage';
 import { CommentsCreatePage } from './pages/comments/CommentsCreatePage';
 import { AuthProvider, useAuth } from './context/AuthProvider';
@@ -46,17 +41,14 @@ function App() {
 
                 {/* BILLS */}
                 <Route path='/bills' element={<BillsPage />} />
-                <Route path='/bills/:id' element={<BillsDetailsPage />} />
                 <Route path='/bills/create' element={<BillsCreatePage />} />
 
                 {/* COMMENTS */}
                 <Route path='/comments' element={<CommentsPage />} />
-                <Route path='/comments/:id' element={<CommentsDetailsPage />} />
                 <Route path='/comments/create' element={<CommentsCreatePage />} />
 
                 {/* CUSTOMERS */}
                 <Route path='/customers' element={<CustomersPage />} />
-                <Route path='/customers/:id' element={<CustomersDetailsPage />} />
                 <Route path='/customers/create' element={<CustomersCreatePage />} />
 
                 {/* EMPLOYEES */}
@@ -71,12 +63,10 @@ function App() {
 
                 {/* SALES */}
                 <Route path='/sales' element={<SalesPage />} />
-                <Route path='/sales/:id' element={<SalesDetailsPage />} />
                 <Route path='/sales/create' element={<SalesCreatePage />} />
 
                 {/* SUPPLIERS */}
                 <Route path='/suppliers' element={<SuppliersPage />} />
-                <Route path='/suppliers/:id' element={<SuppliersDetailsPage />} />
                 <Route path='/suppliers/create' element={<SuppliersCreatePage />} />
 
               </Route>
