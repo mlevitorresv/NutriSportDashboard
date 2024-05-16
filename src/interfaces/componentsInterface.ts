@@ -94,3 +94,7 @@ export interface TfooterPropsInterface{
     itemsPerPage: number
     onPageChanged: Function
 }
+
+export interface EmployeeInfoStyledDivGridInterface{
+    col? : number
+}

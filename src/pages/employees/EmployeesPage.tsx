@@ -17,6 +17,7 @@ import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
 import { ListStyled } from '../../components/common/ListStyled';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
+import { useNavigate } from 'react-router-dom';
 
 
 export const EmployeesPage = () => {
@@ -36,6 +37,8 @@ export const EmployeesPage = () => {
     const [showMens, setShowMens] = useState<boolean>(false)
     const [showWomens, setShowWomens] = useState<boolean>(false)
     const [showOthers, setShowOthers] = useState<boolean>(false)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -78,7 +81,7 @@ export const EmployeesPage = () => {
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((employee: EmployeeInterface) => {
                 components.push(
-                    <TrStyled>
+                    <TrStyled onClick={() => navigate(`/employees/${employee._id}`)}>
                         <td>
                             <PhotoDataDiv data={employee.name} />
                         </td>
