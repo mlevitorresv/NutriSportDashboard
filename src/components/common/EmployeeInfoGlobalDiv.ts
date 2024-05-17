@@ -4,5 +4,9 @@ import styled from "styled-components";
 export const EmployeeInfoGlobalDiv = styled.div`
    display: flex;
    justify-content: space-around;
-   width: 100%;
+   margin-bottom: 3em;
+   padding: 1em;
+   border: 5px solid red;
+   border-radius: 1em;
+
 `

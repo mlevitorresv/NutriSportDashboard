@@ -7,13 +7,13 @@ import { getEmployeeById, getEmployeeError, getEmployeeStatus } from "../../feat
 import { useEffect, useState } from "react"
 import { getEmployeeFromAPIThunk } from "../../features/employees/employeesThunk"
 import { EmployeeInfoStyledDivFlex } from "../../components/common/EmployeeInfoStyledDivFlex"
-import { EmployeeInfoStyledDivGrid } from "../../components/common/EmployeeInfoStyledDivGrid"
 import { MdMailOutline } from "react-icons/md";
 import { FaUser, FaBirthdayCake, FaTransgender, FaPhoneAlt, FaBriefcase, FaCalendarAlt, FaHospitalAlt } from "react-icons/fa";
-import { FaAddressCard , FaFileContract, FaLocationDot, FaMapLocation } from "react-icons/fa6";
-import { EmployeeInfoGlobalDiv } from "../../components/common/EmployeeInfoGlobalDiv"
-import { H1Styled } from "../../components/common/H1Styled"
+import { FaAddressCard, FaFileContract, FaLocationDot, FaMapLocation } from "react-icons/fa6";
 import { BsBank2 } from "react-icons/bs"
+import { ButtonStyled } from "../../components/common/ButtonStyled"
+import { ElementInfoDivStyled } from "../../components/common/ElementInfoDivStyled"
+import { ElementInfoPStyled } from "../../components/common/ElementInfoPStyled"
 
 
 
@@ -44,32 +44,25 @@ export const EmployeesDetailsPage = () => {
     return (
         <>
             <OneElementBackgroundDiv>
-                <H1Styled center={true}>Employee info</H1Styled>
-                <EmployeeInfoGlobalDiv>
-                    <EmployeeInfoStyledDivFlex>
-                        {employeeData?.photo ? <img src={employeeData?.photo} alt={employeeData?.name + 'photo'} /> : <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2qHP74tfgJw2kytcqoiAHPRLH0oc1b3BW_WLN3ICHGw&s' alt={'employee icon'} />}
-                        <div>
-                            <p><FaUser /> {employeeData?.name}</p>
-                            <p><FaBirthdayCake /> {employeeData?.birth.toString().split('T')[0]}</p>
-                            <p><FaTransgender /> {employeeData?.gender}</p>
-                            <p><FaAddressCard  /> {employeeData?.DNI}</p>
-                        </div>
-                    </EmployeeInfoStyledDivFlex>
-                    <EmployeeInfoStyledDivGrid>
-                        <p><MdMailOutline /> {employeeData?.email}</p>
-                        <p><FaPhoneAlt /> {employeeData?.phone}</p>
-                        <p><FaLocationDot /> {employeeData?.postalCode}</p>
-                        <p><FaMapLocation /> {employeeData?.address}</p>
-                    </EmployeeInfoStyledDivGrid>
-                </EmployeeInfoGlobalDiv>
-                <H1Styled center={true}>Employee/Company info</H1Styled>
-                <EmployeeInfoStyledDivGrid col={3}>
-                        <p><FaBriefcase /> {employeeData?.job}</p>
-                        <p><FaCalendarAlt /> {employeeData?.startDate.toString().split('T')[0]}</p>
-                        <p><FaHospitalAlt /> {employeeData?.socialSecurity}</p>
-                        <p><FaFileContract  /> {employeeData?.contract}</p>
-                        <p><BsBank2 /> {employeeData?.bankAccount}</p>
-                    </EmployeeInfoStyledDivGrid>
+                <EmployeeInfoStyledDivFlex dir="col">
+                    {employeeData?.photo ? <img src={employeeData?.photo} alt={employeeData?.name + 'photo'} /> : <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2qHP74tfgJw2kytcqoiAHPRLH0oc1b3BW_WLN3ICHGw&s' alt={'employee icon'} />}
+                    <ButtonStyled>UPDATE {employeeData?.name.split(' ')[0].toUpperCase()}</ButtonStyled>
+                </EmployeeInfoStyledDivFlex>
+                <EmployeeInfoStyledDivFlex dir="col">
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.birth.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.gender}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.DNI}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.email}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.phone}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.postalCode}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.address}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.job}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.startDate.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.socialSecurity}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.contract}</ElementInfoPStyled></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big">ES********{employeeData?.bankAccount.substring(10, 14)}</ElementInfoPStyled></ElementInfoDivStyled>
+                </EmployeeInfoStyledDivFlex>
             </OneElementBackgroundDiv>
         </>
     )

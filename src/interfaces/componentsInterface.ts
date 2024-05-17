@@ -95,6 +95,10 @@ export interface TfooterPropsInterface{
     onPageChanged: Function
 }
 
-export interface EmployeeInfoStyledDivGridInterface{
-    col? : number
+export interface EmployeeInfoStyledDivFlexInterface{
+    dir? : string
+}
+
+export interface ElementInfoPStyledInterface{
+    size : string;
 }

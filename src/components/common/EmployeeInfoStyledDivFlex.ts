@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import { EmployeeInfoStyledDivFlexInterface } from "../../interfaces/componentsInterface";
 
 
-export const EmployeeInfoStyledDivFlex = styled.div`
+export const EmployeeInfoStyledDivFlex = styled.div<EmployeeInfoStyledDivFlexInterface>`
     width: 25%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-height: 225px;
+    flex-direction: ${props => props.dir === 'col' ? 'column' : 'row'};
     padding: .5em;
     color: #393939;
     font-size: 1.2em;
