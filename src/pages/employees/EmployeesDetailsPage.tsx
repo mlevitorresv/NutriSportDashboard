@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, useAppSelector, RootState } from "../../app/store"
 import { OneElementBackgroundDiv } from "../../components/common/OneElementBackgroundDiv"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { EmployeeInterface } from "../../interfaces/employeesInterface"
-import { getEmployeeById, getEmployeeError, getEmployeeStatus } from "../../features/employees/employeesSlice"
+import { getEmployeeById, getEmployeeData, getEmployeeError, getEmployeeStatus } from "../../features/employees/employeesSlice"
 import { useEffect, useState } from "react"
 import { getEmployeeFromAPIThunk } from "../../features/employees/employeesThunk"
 import { EmployeeInfoStyledDivFlex } from "../../components/common/EmployeeInfoStyledDivFlex"
@@ -14,6 +14,12 @@ import { BsBank2 } from "react-icons/bs"
 import { ButtonStyled } from "../../components/common/ButtonStyled"
 import { ElementInfoDivStyled } from "../../components/common/ElementInfoDivStyled"
 import { ElementInfoPStyled } from "../../components/common/ElementInfoPStyled"
+import { SmallTableStyled } from "../../components/table/small/SmallTableStyled"
+import { SmallTheadStyled } from "../../components/table/small/SmallTheadStyled"
+import { Spinner } from "../../components/spinner/Spinner"
+import { PhotoDataDiv } from "../../components/common/PhotoDataDiv"
+import { SmallTrStyled } from "../../components/table/small/SmallTrStyled"
+import { SmallPStyled } from "../../components/table/small/SmallPStyled"
 
 
 
@@ -21,6 +27,7 @@ export const EmployeesDetailsPage = () => {
 
     const params = useParams()
     const id = params.id
+    const navigate = useNavigate()
     const dispatch: AppDispatch = useDispatch();
     let employeeData: EmployeeInterface | undefined;
     const state = useSelector((state: RootState) => state);
@@ -30,6 +37,12 @@ export const EmployeesDetailsPage = () => {
     const employeeError = useAppSelector<string | undefined>(getEmployeeError);
     const employeeStatus = useAppSelector<string>(getEmployeeStatus);
     const [spinner, setSpinner] = useState<boolean>(true)
+
+    const allEmployeesData = useAppSelector<EmployeeInterface[]>(getEmployeeData);
+
+    const allEmployeesError = useAppSelector<string | undefined>(getEmployeeError);
+    const allEmployeesStatus = useAppSelector<string>(getEmployeeStatus);
+    const [spinnerAll, setSpinnerAll] = useState<boolean>(true)
 
     useEffect(() => {
         if (employeeStatus === "idle") {
@@ -41,29 +54,63 @@ export const EmployeesDetailsPage = () => {
         }
     }, [dispatch, employeeStatus, id])
 
+    useEffect(() => {
+        if (allEmployeesStatus === "idle") {
+            dispatch(getEmployeeFromAPIThunk())
+        } else if (allEmployeesStatus === "pending") {
+            setSpinnerAll(true)
+        } else if (allEmployeesStatus === "fulfilled") {
+            setSpinnerAll(false)
+        }
+    }, [dispatch, allEmployeesStatus])
+
     return (
         <>
-            <OneElementBackgroundDiv>
-                <EmployeeInfoStyledDivFlex dir="col">
-                    {employeeData?.photo ? <img src={employeeData?.photo} alt={employeeData?.name + 'photo'} /> : <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2qHP74tfgJw2kytcqoiAHPRLH0oc1b3BW_WLN3ICHGw&s' alt={'employee icon'} />}
-                    <ButtonStyled>UPDATE {employeeData?.name.split(' ')[0].toUpperCase()}</ButtonStyled>
-                </EmployeeInfoStyledDivFlex>
-                <EmployeeInfoStyledDivFlex dir="col">
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.birth.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.gender}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.DNI}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.email}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.phone}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.postalCode}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.address}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.job}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.startDate.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.socialSecurity}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.contract}</ElementInfoPStyled></ElementInfoDivStyled>
-                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big">ES********{employeeData?.bankAccount.substring(10, 14)}</ElementInfoPStyled></ElementInfoDivStyled>
-                </EmployeeInfoStyledDivFlex>
-            </OneElementBackgroundDiv>
+            {spinner ? <Spinner /> :
+                <OneElementBackgroundDiv>
+                    <EmployeeInfoStyledDivFlex dir="col">
+                        {employeeData?.photo ? <img src={employeeData?.photo} alt={employeeData?.name + 'photo'} /> : <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2qHP74tfgJw2kytcqoiAHPRLH0oc1b3BW_WLN3ICHGw&s' alt={'employee icon'} />}
+                        <ButtonStyled>UPDATE {employeeData?.name.split(' ')[0].toUpperCase()}</ButtonStyled>
+                    </EmployeeInfoStyledDivFlex>
+                    <EmployeeInfoStyledDivFlex dir="col">
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.birth.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.gender}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.DNI}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.email}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.phone}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.postalCode}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.address}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.job}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.startDate.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.socialSecurity}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.contract}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big">ES********{employeeData?.bankAccount.substring(10, 14)}</ElementInfoPStyled></ElementInfoDivStyled>
+                    </EmployeeInfoStyledDivFlex>
+                    <SmallTableStyled>
+                        <SmallTheadStyled>
+                            <tr>
+                                <th>Name</th>
+                                <th>Job</th>
+                            </tr>
+                        </SmallTheadStyled>
+                        <tbody>
+                            {spinnerAll ? <Spinner /> :
+                                allEmployeesData.map((employee: EmployeeInterface) => (
+                                    <SmallTrStyled onClick={() => navigate(`/employees/${employee._id}`)}>
+                                        <td>
+                                            <SmallPStyled> {employee.name} </SmallPStyled>
+                                        </td>
+                                        <td>
+                                            <SmallPStyled> {employee.job} </SmallPStyled>
+                                        </td>
+                                    </SmallTrStyled>
+                                ))
+                            }
+                        </tbody>
+                    </SmallTableStyled>
+                </OneElementBackgroundDiv>}
+
         </>
     )
 }
