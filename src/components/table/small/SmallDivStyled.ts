@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 
-export const SmallTrStyled = styled.tr`
+export const SmallDivStyled = styled.div`
+    display: flex;
+    flex-direction: row;
     width: 100%;
     border-bottom: 1px solid black;
     &:hover{

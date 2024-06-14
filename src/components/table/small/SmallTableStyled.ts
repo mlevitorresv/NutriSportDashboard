@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-export const SmallTableStyled = styled.table`
+export const SmallTableStyled = styled.div`
     border: 5px solid white;
     border-radius: 12px;
     padding: .5em 1em;
@@ -11,4 +11,7 @@ export const SmallTableStyled = styled.table`
     width: 30%;
     height: fit-content;
     margin-top: .5em;
+    display: flex;
+    flex-direction: column;
+    jsutify-content: 
 `

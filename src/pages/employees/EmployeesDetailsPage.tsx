@@ -18,8 +18,10 @@ import { SmallTableStyled } from "../../components/table/small/SmallTableStyled"
 import { SmallTheadStyled } from "../../components/table/small/SmallTheadStyled"
 import { Spinner } from "../../components/spinner/Spinner"
 import { PhotoDataDiv } from "../../components/common/PhotoDataDiv"
-import { SmallTrStyled } from "../../components/table/small/SmallTrStyled"
+import { SmallDivStyled } from "../../components/table/small/SmallDivStyled"
 import { SmallPStyled } from "../../components/table/small/SmallPStyled"
+import { H1Styled } from "../../components/common/H1Styled"
+import { DataPStyled } from "../../components/table/small/DataPStyled"
 
 
 
@@ -88,23 +90,22 @@ export const EmployeesDetailsPage = () => {
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big">ES********{employeeData?.bankAccount.substring(10, 14)}</ElementInfoPStyled></ElementInfoDivStyled>
                     </EmployeeInfoStyledDivFlex>
                     <SmallTableStyled>
-                        <SmallTheadStyled>
-                            <tr>
-                                <th>Name</th>
-                                <th>Job</th>
-                            </tr>
-                        </SmallTheadStyled>
+                        <H1Styled>Related employees</H1Styled>
+                        <SmallDivStyled>
+                            <DataPStyled type='name' title={true}>Name</DataPStyled>
+                            <DataPStyled type='job' title={true}>Job</DataPStyled>
+                        </SmallDivStyled>
                         <tbody>
                             {spinnerAll ? <Spinner /> :
                                 allEmployeesData.map((employee: EmployeeInterface) => (
-                                    <SmallTrStyled onClick={() => navigate(`/employees/${employee._id}`)}>
-                                        <td>
+                                    <SmallDivStyled onClick={() => navigate(`/employees/${employee._id}`)}>
+                                        <DataPStyled type='name'>
                                             <SmallPStyled> {employee.name} </SmallPStyled>
-                                        </td>
-                                        <td>
+                                        </DataPStyled>
+                                        <DataPStyled type='job'>
                                             <SmallPStyled> {employee.job} </SmallPStyled>
-                                        </td>
-                                    </SmallTrStyled>
+                                        </DataPStyled>
+                                    </SmallDivStyled>
                                 ))
                             }
                         </tbody>

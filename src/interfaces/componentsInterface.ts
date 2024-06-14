@@ -102,3 +102,8 @@ export interface EmployeeInfoStyledDivFlexInterface{
 export interface ElementInfoPStyledInterface{
     size : string;
 }
+
+export interface DataPStyledInterface{
+    type: string
+    title? : boolean
+}
