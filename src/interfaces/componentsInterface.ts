@@ -97,10 +97,12 @@ export interface TfooterPropsInterface{
 
 export interface EmployeeInfoStyledDivFlexInterface{
     dir? : string
+    box?: string
 }
 
 export interface ElementInfoPStyledInterface{
     size : string;
+    type?: string
 }
 
 export interface DataPStyledInterface{

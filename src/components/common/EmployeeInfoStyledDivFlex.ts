@@ -3,8 +3,10 @@ import { EmployeeInfoStyledDivFlexInterface } from "../../interfaces/componentsI
 
 
 export const EmployeeInfoStyledDivFlex = styled.div<EmployeeInfoStyledDivFlexInterface>`
-    width: 25%;
-    display: flex;
+    width: ${props => props.box === 'grid' ? '50%' : '25%'};
+    display: ${props => props.box === 'grid' ? 'grid' : 'flex'};
+    grid-template-columns: repeat(2, 50%);
+    gap: 0px 20px;
     flex-direction: ${props => props.dir === 'col' ? 'column' : 'row'};
     padding: .5em;
     color: #393939;

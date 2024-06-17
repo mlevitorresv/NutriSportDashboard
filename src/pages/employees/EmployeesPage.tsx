@@ -18,6 +18,7 @@ import { Spinner } from '../../components/spinner/Spinner';
 import { ListStyled } from '../../components/common/ListStyled';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
 import { useNavigate } from 'react-router-dom';
+import { ButtonStyled } from '../../components/common/ButtonStyled';
 
 
 export const EmployeesPage = () => {
@@ -150,11 +151,14 @@ export const EmployeesPage = () => {
     return (
         <>
             <MenuStyled>
-                <InputStyled
-                    type='secondary'
-                    placeholder="Find by employee's name"
-                    onChange={(e) => setSearchDescription(e.target.value)}
-                />
+                <div>
+                    <InputStyled
+                        type='secondary'
+                        placeholder="Find by employee's name"
+                        onChange={(e) => setSearchDescription(e.target.value)}
+                    />
+                    <ButtonStyled color='white' bg='#135846' onClick={() => navigate(`/employees/create`)}> Create Employee</ButtonStyled>
+                </div>
                 <div>
                     <ListStyled>
                         <ListElementStyled

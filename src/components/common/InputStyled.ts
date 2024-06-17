@@ -6,7 +6,7 @@ interface InputStyledPropsInterface{
 
 export const InputStyled = styled.input<InputStyledPropsInterface>`
     background-color: #FCFCFC ;
-    width: ${props => props.type === 'secondary' ? '' : '60%'};
+    width: ${props => props.type === 'secondary' ? '' : props.type == 'creationform' ? '90%' : '60%'};
     border: 1px solid black;
     border-radius: 12px;
     padding: 1em 1em;
