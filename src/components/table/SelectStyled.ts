@@ -9,6 +9,7 @@ export const SelectStyled = styled.select<SelectStyledPropsInterface>`
     border: 1px solid #135846;
     border-radius: 10px;
     padding: 1em;
-    margin: ${props => props.type === 'secondary' ? '1em auto' : '2em'};
-    width: ${props => props.type === 'secondary' ? '65%' : ''}
+    margin: ${props => props.type === 'secondary' ? '1em auto' : props.type == 'creationform' ? '1em auto' : '2em'};
+    width: ${props => props.type === 'secondary' ? '65%' : props.type == 'creationform' ? '100%' : ''};
+
 `

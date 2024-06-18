@@ -22,7 +22,7 @@ export const EmployeesCreatePage = () => {
     const photo = useRef<HTMLInputElement>(null);
     const name = useRef<HTMLInputElement>(null);
     const birth = useRef<HTMLInputElement>(null);
-    const gender = useRef<HTMLInputElement>(null);
+    const gender = useRef<HTMLSelectElement>(null);
     const dni = useRef<HTMLInputElement>(null);
     const email = useRef<HTMLInputElement>(null);
     const phone = useRef<HTMLInputElement>(null);
@@ -31,7 +31,7 @@ export const EmployeesCreatePage = () => {
     const job = useRef<HTMLInputElement>(null);
     const startdate = useRef<HTMLInputElement>(null);
     const socialsec = useRef<HTMLInputElement>(null);
-    const contract = useRef<HTMLInputElement>(null);
+    const contract = useRef<HTMLSelectElement>(null);
     const bankAccount = useRef<HTMLInputElement>(null);
 
     const sendData = async () => {
@@ -83,10 +83,10 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled>
-                        <SelectStyled type="creationform" ref={gender}>
+                        <SelectStyled type="creationform" ref={gender} defaultValue={'male'}>
                             <option value="male" selected>Male</option>
-                            <option value="female" selected>Female</option>
-                            <option value="Other" selected>Other</option>
+                            <option value="female">Female</option>
+                            <option value="Other">Other</option>
                         </SelectStyled>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
@@ -123,7 +123,11 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={contract} />
+                        <SelectStyled type="creationform" ref={contract} defaultValue={'undefinedTime'}>
+                            <option value="partner" selected>Partner</option>
+                            <option value="undefinedTime">Undefined Time</option>
+                            <option value="certainTime">Certain Time</option>
+                        </SelectStyled>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled>
