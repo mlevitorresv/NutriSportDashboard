@@ -43,7 +43,7 @@ export const EmployeesCreatePage = () => {
             gender: gender.current?.value || '',
             DNI: dni.current?.value || '',
             email: email.current?.value || '',
-            password: '', // No se está recogiendo de los inputs
+            password: '12345678', 
             phone: phone.current?.value || '',
             postalCode: parseInt(postalcode.current?.value || '0', 10),
             address: address.current?.value || '',
