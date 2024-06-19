@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { AppDispatch, useAppDispatch } from "../../app/store";
 import { createEmployeeToAPIThunk } from "../../features/employees/employeesThunk";
 import { SelectStyled } from "../../components/table/SelectStyled";
+import { toast } from "react-toastify";
 
 
 
@@ -57,7 +58,16 @@ export const EmployeesCreatePage = () => {
 
         await dispatch(createEmployeeToAPIThunk(data))
 
-        console.log('usuario creado')
+        toast.success('Usuario creado correctamente', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
 
     }
 
