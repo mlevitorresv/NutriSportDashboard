@@ -15,10 +15,12 @@ import { TableGuestStyled } from '../../components/table/TableGuestStyled';
 import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 
 export const ProductsPage = () => {
     const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate()
     const productListData = useAppSelector<ProductInterface[]>(getProductData);
     const productListError = useAppSelector<string | undefined>(getProductError);
     const productListStatus = useAppSelector<string>(getProductStatus);
@@ -64,7 +66,7 @@ export const ProductsPage = () => {
             const paginatedList = sortedList.slice(startIndex, endIndex);
             paginatedList.forEach((product: ProductInterface) => {
                 components.push(
-                    <TrStyled>
+                    <TrStyled onClick={() => navigate(`/products/${product._id}`)}>
                         <td>
                             <PhotoDataDiv data={product.name} />
                         </td>

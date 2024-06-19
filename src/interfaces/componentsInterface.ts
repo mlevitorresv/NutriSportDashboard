@@ -100,6 +100,10 @@ export interface EmployeeInfoStyledDivFlexInterface{
     box?: string
 }
 
+export interface ProductInfoStyledDivInterface{
+    col : number
+}
+
 export interface ElementInfoPStyledInterface{
     size : string;
     type?: string
