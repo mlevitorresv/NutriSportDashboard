@@ -46,11 +46,11 @@ export const ProductsDetailsPage = () => {
     }, [dispatch, productStatus, id])
 
 
-        return (
+    return (
         <>
             {spinner ? <Spinner /> :
                 <OneElementBackgroundDiv direction="column">
-                    <ProductInfoStyledDiv col = {3}>
+                    <ProductInfoStyledDiv col={3}>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.brand}</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.SKU}</ElementInfoPStyled></ElementInfoDivStyled>
@@ -63,7 +63,14 @@ export const ProductsDetailsPage = () => {
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
+
+                    <ProductInfoStyledDiv col={3}>
+                        {productData?.photos.map((element, index) => (
+                            <img src={element} alt={`${element} photo`} key={index} />
+                        ))}
+                    </ProductInfoStyledDiv>
                 </OneElementBackgroundDiv>}
+            {console.log(productData?.photos)}
 
         </>
     )
