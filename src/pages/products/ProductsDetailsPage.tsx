@@ -16,6 +16,10 @@ import { Spinner } from "../../components/spinner/Spinner"
 import { ProductInfoStyledDiv } from "../../components/common/ProductInfoStyledDiv"
 import { getProductFromAPIThunk } from "../../features/products/productsThunk"
 import { TbCircleLetterB, TbCircleLetterC, TbMeat } from "react-icons/tb"
+import { TableGuestStyled } from "../../components/table/TableGuestStyled"
+import { TheadStyled } from "../../components/table/TheadStyled"
+import { PhotoDataDiv } from "../../components/common/PhotoDataDiv"
+import { TrStyled } from "../../components/table/TrStyled"
 
 
 
@@ -69,6 +73,73 @@ export const ProductsDetailsPage = () => {
                             <img src={element} alt={`${element} photo`} key={index} />
                         ))}
                     </ProductInfoStyledDiv>
+
+                    <TableGuestStyled className='rev'>
+                        <TheadStyled>
+                            <tr>
+                                <th></th>
+                                <th>Por 100g</th>
+                                <th>Por 30g</th>
+                            </tr>
+                        </TheadStyled>
+                        <tbody>
+                            <TrStyled>
+                                <td>
+                                    <PhotoDataDiv data={'ENERGY'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={productData?.energy + 'Kcal'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={(3000 / productData?.energy).toString() + 'Kcal'} />
+                                </td>
+                            </TrStyled>
+                            <TrStyled>
+                                <td>
+                                    <PhotoDataDiv data={'FATS'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={productData?.fats + 'G'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={(3000 / productData?.fats).toString() + 'G'} />
+                                </td>
+                            </TrStyled>
+                            <TrStyled>
+                                <td>
+                                    <PhotoDataDiv data={'CARBOHYDRATES'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={productData?.carbohydrates + 'G'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={(3000 / productData?.carbohydrates).toString() + 'G'} />
+                                </td>
+                            </TrStyled>
+                            <TrStyled>
+                                <td>
+                                    <PhotoDataDiv data={'PROTEINS'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={productData?.proteins  + 'G'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={(3000 / productData?.proteins).toString() + 'G'} />
+                                </td>
+                            </TrStyled>
+                            <TrStyled>
+                                <td>
+                                    <PhotoDataDiv data={'SALT'} />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={productData?.salt + 'G' } />
+                                </td>
+                                <td>
+                                    <PhotoDataDiv data={(3000 / productData?.salt).toString() + 'G'} />
+                                </td>
+                            </TrStyled>
+                        </tbody>
+                    </TableGuestStyled>
                 </OneElementBackgroundDiv>}
             {console.log(productData?.photos)}
 
