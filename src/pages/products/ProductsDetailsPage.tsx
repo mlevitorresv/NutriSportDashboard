@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { ProductInterface } from "../../interfaces/productsInterface"
 import { getProductById, getProductError, getProductStatus } from "../../features/products/productsSlice"
 import { useEffect, useState } from "react"
-import { MdMailOutline, MdWarehouse } from "react-icons/md";
+import { MdDescription, MdMailOutline, MdWarehouse } from "react-icons/md";
 import { FaBarcode, FaJar, FaSackDollar } from "react-icons/fa6";
 import { FaUser, FaBirthdayCake, FaTransgender, FaPhoneAlt, FaBriefcase, FaCalendarAlt, FaHospitalAlt } from "react-icons/fa";
 import { FaAddressCard, FaFileContract, FaLocationDot, FaMapLocation } from "react-icons/fa6";
@@ -15,7 +15,7 @@ import { ElementInfoPStyled } from "../../components/common/ElementInfoPStyled"
 import { Spinner } from "../../components/spinner/Spinner"
 import { ProductInfoStyledDiv } from "../../components/common/ProductInfoStyledDiv"
 import { getProductFromAPIThunk } from "../../features/products/productsThunk"
-import { TbCircleLetterB, TbCircleLetterC } from "react-icons/tb"
+import { TbCircleLetterB, TbCircleLetterC, TbMeat } from "react-icons/tb"
 
 
 
@@ -60,8 +60,8 @@ export const ProductsDetailsPage = () => {
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={2}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
                 </OneElementBackgroundDiv>}
 
