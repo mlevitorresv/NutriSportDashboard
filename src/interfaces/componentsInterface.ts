@@ -113,3 +113,7 @@ export interface DataPStyledInterface{
     type: string
     title? : boolean
 }
+
+export interface OneElementBackgroundDivInterface{
+    direction?: string
+}

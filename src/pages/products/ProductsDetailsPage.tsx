@@ -49,7 +49,7 @@ export const ProductsDetailsPage = () => {
         return (
         <>
             {spinner ? <Spinner /> :
-                <OneElementBackgroundDiv>
+                <OneElementBackgroundDiv direction="column">
                     <ProductInfoStyledDiv col = {3}>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.brand}</ElementInfoPStyled></ElementInfoDivStyled>
@@ -57,6 +57,11 @@ export const ProductsDetailsPage = () => {
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.category}</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.PVP}€</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.stock}</ElementInfoPStyled></ElementInfoDivStyled>
+                    </ProductInfoStyledDiv>
+
+                    <ProductInfoStyledDiv col={2}>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
                 </OneElementBackgroundDiv>}
 
