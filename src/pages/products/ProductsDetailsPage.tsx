@@ -49,19 +49,12 @@ export const ProductsDetailsPage = () => {
             {spinner ? <Spinner /> :
                 <OneElementBackgroundDiv>
                     <ProductInfoStyledDiv col = {3}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">name</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><ElementInfoPStyled size="big">birth</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><ElementInfoPStyled size="big">gender</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><ElementInfoPStyled size="big">DNI</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big"></ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Brand</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.brand}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> SKU</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.SKU}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> Category</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.category}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> PVP</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.PVP}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Stock</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.stock}</ElementInfoPStyled></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
                 </OneElementBackgroundDiv>}
 

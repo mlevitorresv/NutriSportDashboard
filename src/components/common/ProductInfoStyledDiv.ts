@@ -3,6 +3,7 @@ import { ProductInfoStyledDivInterface } from "../../interfaces/componentsInterf
 
 
 export const ProductInfoStyledDiv = styled.div<ProductInfoStyledDivInterface>`
+    width: 80%;
     display: grid;
     grid-template-columns: ${props => props.col ? `repeat(${props.col}, 1fr)` : 'repeat(2, 50%)'};
     gap: 0px 20px;
