@@ -64,7 +64,7 @@ export const ProductsDetailsPage = () => {
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={2}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}​</ElementInfoPStyled></ElementInfoDivStyled>
                         <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
 
