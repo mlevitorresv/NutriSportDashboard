@@ -91,7 +91,7 @@ export const ProductsDetailsPage = () => {
                                     <PhotoDataDiv data={productData?.energy + 'Kcal'} />
                                 </td>
                                 <td>
-                                    <PhotoDataDiv data={(3000 / productData?.energy).toString() + 'Kcal'} />
+                                    <PhotoDataDiv data={(productData?.energy / 3000).toFixed(2).toString() + 'Kcal'} />
                                 </td>
                             </TrStyled>
                             <TrStyled>
@@ -102,7 +102,7 @@ export const ProductsDetailsPage = () => {
                                     <PhotoDataDiv data={productData?.fats + 'G'} />
                                 </td>
                                 <td>
-                                    <PhotoDataDiv data={(3000 / productData?.fats).toString() + 'G'} />
+                                    <PhotoDataDiv data={(productData?.fats / 3000).toFixed(2).toString() + 'G'} />
                                 </td>
                             </TrStyled>
                             <TrStyled>
@@ -113,7 +113,7 @@ export const ProductsDetailsPage = () => {
                                     <PhotoDataDiv data={productData?.carbohydrates + 'G'} />
                                 </td>
                                 <td>
-                                    <PhotoDataDiv data={(3000 / productData?.carbohydrates).toString() + 'G'} />
+                                    <PhotoDataDiv data={(productData?.carbohydrates / 3000).toFixed(2).toString() + 'G'} />
                                 </td>
                             </TrStyled>
                             <TrStyled>
@@ -124,7 +124,7 @@ export const ProductsDetailsPage = () => {
                                     <PhotoDataDiv data={productData?.proteins  + 'G'} />
                                 </td>
                                 <td>
-                                    <PhotoDataDiv data={(3000 / productData?.proteins).toString() + 'G'} />
+                                    <PhotoDataDiv data={(productData?.proteins / 3000).toFixed(2).toString() + 'G'} />
                                 </td>
                             </TrStyled>
                             <TrStyled>
@@ -135,7 +135,7 @@ export const ProductsDetailsPage = () => {
                                     <PhotoDataDiv data={productData?.salt + 'G' } />
                                 </td>
                                 <td>
-                                    <PhotoDataDiv data={(3000 / productData?.salt).toString() + 'G'} />
+                                    <PhotoDataDiv data={(productData?.salt / 3000).toFixed(2).toString() + 'G'} />
                                 </td>
                             </TrStyled>
                         </tbody>
