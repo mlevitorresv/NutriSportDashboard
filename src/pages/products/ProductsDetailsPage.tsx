@@ -21,6 +21,7 @@ import { TheadStyled } from "../../components/table/TheadStyled"
 import { PhotoDataDiv } from "../../components/common/PhotoDataDiv"
 import { TrStyled } from "../../components/table/TrStyled"
 import { ProductImgStyled } from "../../components/common/ProductImgStyled"
+import { InputStyled } from "../../components/common/InputStyled"
 
 
 
@@ -56,17 +57,17 @@ export const ProductsDetailsPage = () => {
             {spinner ? <Spinner /> :
                 <OneElementBackgroundDiv direction="column">
                     <ProductInfoStyledDiv col={3}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.brand}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.SKU}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.category}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.PVP}€</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.stock}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><InputStyled type="creationform" value={productData?.name}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><InputStyled type="creationform" value={productData?.brand}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><InputStyled type="creationform" value={productData?.SKU}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><InputStyled type="creationform" value={productData?.category}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><InputStyled type="creationform" value={`${productData?.PVP}€`}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><InputStyled type="creationform" value={productData?.stock}/></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={2}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.description}​</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><ElementInfoPStyled size="big">{productData?.ingredients}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><InputStyled type="creationform" value={productData?.description} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><InputStyled type="creationform" value={productData?.ingredients}/></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={3}>
