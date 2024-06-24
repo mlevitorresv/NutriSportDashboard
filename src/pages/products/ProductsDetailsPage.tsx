@@ -20,6 +20,7 @@ import { TableGuestStyled } from "../../components/table/TableGuestStyled"
 import { TheadStyled } from "../../components/table/TheadStyled"
 import { PhotoDataDiv } from "../../components/common/PhotoDataDiv"
 import { TrStyled } from "../../components/table/TrStyled"
+import { ProductImgStyled } from "../../components/common/ProductImgStyled"
 
 
 
@@ -70,7 +71,7 @@ export const ProductsDetailsPage = () => {
 
                     <ProductInfoStyledDiv col={3}>
                         {productData?.photos.map((element, index) => (
-                            <img src={element} alt={`${element} photo`} key={index} />
+                            <ProductImgStyled src={element} alt={`${element} photo`} key={index} />
                         ))}
                     </ProductInfoStyledDiv>
 
@@ -141,8 +142,6 @@ export const ProductsDetailsPage = () => {
                         </tbody>
                     </TableGuestStyled>
                 </OneElementBackgroundDiv>}
-            {console.log(productData?.photos)}
-
         </>
     )
 }
