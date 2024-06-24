@@ -22,6 +22,7 @@ import { SmallDivStyled } from "../../components/table/small/SmallDivStyled"
 import { SmallPStyled } from "../../components/table/small/SmallPStyled"
 import { H1Styled } from "../../components/common/H1Styled"
 import { DataPStyled } from "../../components/table/small/DataPStyled"
+import { InputStyled } from "../../components/common/InputStyled"
 
 
 
@@ -75,19 +76,19 @@ export const EmployeesDetailsPage = () => {
                         <ButtonStyled>UPDATE {employeeData?.name.split(' ')[0].toUpperCase()}</ButtonStyled>
                     </EmployeeInfoStyledDivFlex>
                     <EmployeeInfoStyledDivFlex dir="col">
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.name}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.birth.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.gender}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.DNI}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.email}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.phone}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.postalCode}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.address}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.job}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.startDate.toString().split('T')[0]}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.socialSecurity}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><ElementInfoPStyled size="big">{employeeData?.contract}</ElementInfoPStyled></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><ElementInfoPStyled size="big">ES********{employeeData?.bankAccount.substring(10, 14)}</ElementInfoPStyled></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.name} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.birth.toString().split('T')[0]} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.gender} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.DNI} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.email} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.phone} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.postalCode} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.address} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.job} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.startDate.toString().split('T')[0]} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.socialSecurity} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.contract} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><InputStyled type="creationform" value={`ES********${employeeData?.bankAccount.substring(10, 14)}`} /></ElementInfoDivStyled>
                     </EmployeeInfoStyledDivFlex>
                     <SmallTableStyled>
                         <H1Styled>Related employees</H1Styled>
