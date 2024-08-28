@@ -51,20 +51,3 @@ export const deleteBillToAPIThunk = createAsyncThunk<string, string, { rejectVal
         return rejectWithValue('Error al eliminar la factura')
     }
 })
-
-
-export const deleteProductToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
-    "products/deleteProductToApi",
-    async (id: string, { rejectWithValue }) => {
-    try {
-        const token = sessionStorage.getItem('token');
-        const response = await apiRequest(`products/${id}`, 'DELETE', null, token);
-        if (!response.ok){
-            const errorData = await response.json();
-            return rejectWithValue(errorData.message || 'Error al eliminar el producto')
-        }
-        return id;
-    } catch (error) {
-        return rejectWithValue('Error al eliminar el producto')
-    }
-})
