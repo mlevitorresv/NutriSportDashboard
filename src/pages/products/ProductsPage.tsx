@@ -86,7 +86,12 @@ export const ProductsPage = () => {
                             <PhotoDataDiv data={product.stock.toString()} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveProduct(product._id)} />} />
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveProduct(product._id);
+                                }} />
+                            } />
                         </td>
                     </TrStyled>
                 )
@@ -104,7 +109,7 @@ export const ProductsPage = () => {
     const handleRemoveProduct = async (productId: string | undefined) => {
         try {
             if (productId) {
-                await dispatch(deleteProductToAPIThunk(productId))
+                await dispatch(deleteProductToAPIThunk(productId)).unwrap();
                 toast.info('producto eliminado', {
                     position: "top-center",
                     autoClose: 5000,
@@ -117,7 +122,6 @@ export const ProductsPage = () => {
                 })
             }
         } catch (error) {
-            console.log('error', error)
             toast.error('No se pudo eliminar el producto', {
                 position: "top-center",
                 autoClose: 5000,

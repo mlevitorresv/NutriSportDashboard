@@ -52,7 +52,7 @@ export const productSlice = createSlice({
 
         .addCase(deleteProductToAPIThunk.fulfilled , (state, action) => {
             state.status = "fulfilled"
-            state.data = state.data.filter(product => product._id != action.payload._id)
+            state.data = state.data.filter(product => product._id !== action.payload)
         })
         .addCase(deleteProductToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"

@@ -36,13 +36,18 @@ export const createProductToAPIThunk = createAsyncThunk("products/createProductT
     }
 })
 
-export const deleteProductToAPIThunk = createAsyncThunk<ProductInterface, string, { state: any, rejectValue: string }>("products/deleteProductToApi", async (id: any): Promise<ProductInterface> => {
+export const deleteProductToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "products/deleteProductToApi",
+    async (id: string, { rejectWithValue }) => {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`products/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
+        if (!response.ok){
+            const errorData = await response.json();
+            return rejectWithValue(errorData.message || 'Error al eliminar el producto')
+        }
+        return id;
     } catch (error) {
-        throw new Error('Error al eliminar el producto')
+        return rejectWithValue('Error al eliminar el producto')
     }
 })
