@@ -36,13 +36,35 @@ export const createBillToAPIThunk = createAsyncThunk("bills/createBillToApi", as
     }
 })
 
-export const deleteBillToAPIThunk = createAsyncThunk<BillsInterface, string, { state: any, rejectValue: string }>("bills/deleteBillToApi", async (id: any): Promise<BillsInterface> => {
+export const deleteBillToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "bills/deleteBillToApi",
+     async (id: string, { rejectWithValue }) => {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`bills/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
+        if (!response.ok){
+            const errorData = await response.json();
+            return rejectWithValue(errorData.message || 'Error al eliminar la factura')
+        }
+        return id
     } catch (error) {
-        throw new Error('Error al eliminar la factura')
+        return rejectWithValue('Error al eliminar la factura')
+    }
+})
+
+
+export const deleteProductToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "products/deleteProductToApi",
+    async (id: string, { rejectWithValue }) => {
+    try {
+        const token = sessionStorage.getItem('token');
+        const response = await apiRequest(`products/${id}`, 'DELETE', null, token);
+        if (!response.ok){
+            const errorData = await response.json();
+            return rejectWithValue(errorData.message || 'Error al eliminar el producto')
+        }
+        return id;
+    } catch (error) {
+        return rejectWithValue('Error al eliminar el producto')
     }
 })

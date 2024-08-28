@@ -47,13 +47,13 @@ export const BillsPage = () => {
       let components: React.JSX.Element[] = []
       let sortedList: BillsInterface[] = [];
 
-      if(showShop)
+      if (showShop)
         sortedList = billListShop.slice()
-      else if(showRent)
+      else if (showRent)
         sortedList = billListRent.slice()
-      else if(showPayroll)
+      else if (showPayroll)
         sortedList = billListPayroll.slice()
-      else 
+      else
         sortedList = billListData.slice()
 
 
@@ -98,7 +98,12 @@ export const BillsPage = () => {
               <PhotoDataDiv data={bill.date.toString().split('T')[0]} />
             </td>
             <td>
-              <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveBill(bill._id)} />} />
+              <PhotoDataDiv data={
+                <TrashStyledIcon onClick={(e) => {
+                  e.stopPropagation();
+                  handleRemoveBill(bill._id);
+                }} />
+              } />
             </td>
           </TrStyled>
         )

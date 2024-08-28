@@ -52,7 +52,7 @@ export const billSlice = createSlice({
 
         .addCase(deleteBillToAPIThunk.fulfilled , (state, action) => {
             state.status = "fulfilled"
-            state.data = state.data.filter(bill => bill._id != action.payload._id)
+            state.data = state.data.filter(bill => bill._id != action.payload)
         })
         .addCase(deleteBillToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"
