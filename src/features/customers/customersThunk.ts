@@ -3,10 +3,10 @@ import { apiRequest } from "../../api/apiCall";
 import { CustomerInterface } from "../../interfaces/customersInterface";
 
 
-export const getCustomerListFromAPIThunk = createAsyncThunk<CustomerInterface[], void, { state: any, rejectValue: string }>("customers/getCustomersFromApi",  async (): Promise<CustomerInterface[]> => {
+export const getCustomerListFromAPIThunk = createAsyncThunk<CustomerInterface[], void, { state: any, rejectValue: string }>("customers/getCustomersFromApi", async (): Promise<CustomerInterface[]> => {
     try {
         const token = sessionStorage.getItem('token');
-        const response  = await apiRequest('customers', 'GET', null, token);
+        const response = await apiRequest('customers', 'GET', null, token);
         const responseData = await response.json();
         return responseData.customers;
     } catch (error) {
@@ -14,13 +14,13 @@ export const getCustomerListFromAPIThunk = createAsyncThunk<CustomerInterface[],
     }
 })
 
-export const getCustomerFromAPIThunk = createAsyncThunk<CustomerInterface[], string | undefined, { state: any, rejectValue: string }>("customers/getCustomerFromAPI", async(id): Promise<CustomerInterface[]> => {
-    try{
+export const getCustomerFromAPIThunk = createAsyncThunk<CustomerInterface[], string | undefined, { state: any, rejectValue: string }>("customers/getCustomerFromAPI", async (id): Promise<CustomerInterface[]> => {
+    try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`customers/${id}`, 'GET', null, token);
         const responseData = await response.json();
         return responseData.customer;
-    }catch(error){
+    } catch (error) {
         throw new Error('Error al obtener el cliente desde la API')
     }
 })
@@ -36,13 +36,18 @@ export const createCustomerToAPIThunk = createAsyncThunk("customers/createCustom
     }
 })
 
-export const deleteCustomerToAPIThunk = createAsyncThunk<CustomerInterface, string, { state: any, rejectValue: string }>("customers/deleteCustomerToApi", async (id: any): Promise<CustomerInterface> => {
-    try {
-        const token = sessionStorage.getItem('token');
-        const response = await apiRequest(`customers/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
-    } catch (error) {
-        throw new Error('Error al eliminar el cliente')
-    }
-})
+export const deleteCustomerToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "customers/deleteCustomerToApi",
+    async (id: string, { rejectWithValue }) => {
+        try {
+            const token = sessionStorage.getItem('token');
+            const response = await apiRequest(`customers/${id}`, 'DELETE', null, token);
+            if (!response.ok){
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message || 'Error al eliminar el cliente')
+            }
+            return id
+        } catch (error) {
+            throw new Error('Error al eliminar el cliente')
+        }
+    })

@@ -34,9 +34,9 @@ export const CustomersPage = () => {
     const itemsPerPage = 10;
     const [searchName, setSearchDescription] = useState<string>('')
 
-    const [ showMens, setShowMens ] = useState<boolean>(false)
-    const [ showWomens, setShowWomens ] = useState<boolean>(false)
-    const [ showOthers, setShowOthers ] = useState<boolean>(false)
+    const [showMens, setShowMens] = useState<boolean>(false)
+    const [showWomens, setShowWomens] = useState<boolean>(false)
+    const [showOthers, setShowOthers] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -48,13 +48,13 @@ export const CustomersPage = () => {
             let components: React.JSX.Element[] = []
             let sortedList: CustomerInterface[] = []
 
-            if(showMens)
+            if (showMens)
                 sortedList = customerListMens.slice()
-              else if(showWomens)
+            else if (showWomens)
                 sortedList = customerListWomens.slice()
-              else if(showOthers)
+            else if (showOthers)
                 sortedList = customerListOthers.slice()
-              else 
+            else
                 sortedList = customerListData.slice()
 
             if (selectedSort === 'name')
@@ -97,7 +97,12 @@ export const CustomersPage = () => {
                             <PhotoDataDiv data={customer.gender} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveCustomer(customer._id)} />} />
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation()
+                                    handleRemoveCustomer(customer._id)
+                                }} />
+                            } />
                         </td>
                     </TrStyled>
                 )
@@ -116,7 +121,7 @@ export const CustomersPage = () => {
         try {
             if (customerId) {
                 await dispatch(deleteCustomerToAPIThunk(customerId))
-                toast.info('Comentario eliminado', {
+                toast.info('Cliente eliminado', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -129,7 +134,7 @@ export const CustomersPage = () => {
             }
         } catch (error) {
             console.log('error', error)
-            toast.error('No se pudo eliminar el comentario', {
+            toast.error('No se pudo eliminar el cliente', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
