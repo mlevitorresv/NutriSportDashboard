@@ -102,7 +102,12 @@ export const EmployeesPage = () => {
                             <PhotoDataDiv data={employee.gender} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveEmployee(employee._id)} />} />
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveEmployee(employee._id);
+                                }} />
+                            } />
                         </td>
                     </TrStyled>
                 )

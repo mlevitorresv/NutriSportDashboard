@@ -36,12 +36,17 @@ export const createEmployeeToAPIThunk = createAsyncThunk("employees/createEmploy
     }
 })
 
-export const deleteEmployeeToAPIThunk = createAsyncThunk<EmployeeInterface, string, { state: any, rejectValue: string }>("employees/deleteEmployeeToApi", async (id: any): Promise<EmployeeInterface> => {
+export const deleteEmployeeToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "employees/deleteEmployeeToApi",
+     async (id: string, { rejectWithValue })=> {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`employees/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
+        if (!response.ok){
+            const errorData = await response.json()
+            return rejectWithValue(errorData.message || "error al eliminar el empleado")
+        }
+        return id;
     } catch (error) {
         throw new Error('Error al eliminar el empleado')
     }
