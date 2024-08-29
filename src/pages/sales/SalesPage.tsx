@@ -93,8 +93,12 @@ export const SalesPage = () => {
                             <PhotoDataDiv data={sale.invoiceNumber.toString()} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveSale(sale._id)} />} />
-                        </td>
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveSale(sale._id);
+                                }} />
+                            } />                        </td>
                     </TrStyled>
                 )
             })
@@ -124,7 +128,6 @@ export const SalesPage = () => {
                 })
             }
         } catch (error) {
-            console.log('error', error)
             toast.error('No se pudo eliminar la venta', {
                 position: "top-center",
                 autoClose: 5000,
@@ -161,7 +164,7 @@ export const SalesPage = () => {
                             onClick={() => (setShowCard(false), setShowCash(true))}
                             className={!showCard && showCash ? 'active' : ''}
                         >Cash Payments</ListElementStyled>
-                        
+
                     </ListStyled>
                     <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
                         <option value="customer" selected>Customer</option>
