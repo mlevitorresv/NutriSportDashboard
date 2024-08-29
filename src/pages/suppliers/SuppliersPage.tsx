@@ -89,7 +89,12 @@ export const SuppliersPage = () => {
                             <PhotoDataDiv data={supplier.category} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveSupplier(supplier._id)} />} />
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveSupplier(supplier._id);
+                                }} />
+                            } />
                         </td>
                     </TrStyled>
                 )
@@ -144,7 +149,7 @@ export const SuppliersPage = () => {
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
                 <div>
-                <ListStyled>
+                    <ListStyled>
                         <ListElementStyled
                             onClick={() => (setShowProducts(false), setShowRent(false))}
                             className={!showProducts && !showRent ? 'active' : ''}
@@ -157,7 +162,7 @@ export const SuppliersPage = () => {
                             onClick={() => (setShowProducts(false), setShowRent(true))}
                             className={!showProducts && showRent ? 'active' : ''}
                         >Rent Suppliers</ListElementStyled>
-                        
+
                     </ListStyled>
                     <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
                         <option value="name" selected>Name</option>

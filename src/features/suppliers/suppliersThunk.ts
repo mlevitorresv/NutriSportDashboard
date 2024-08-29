@@ -36,13 +36,18 @@ export const createSupplierToAPIThunk = createAsyncThunk("suppliers/createSuppli
     }
 })
 
-export const deleteSupplierToAPIThunk = createAsyncThunk<SupplierInterface, string, { state: any, rejectValue: string }>("suppliers/deleteSupplierToApi", async (id: any): Promise<SupplierInterface> => {
+export const deleteSupplierToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "suppliers/deleteSupplierToApi",
+    async (id: string, { rejectWithValue })=> {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`suppliers/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
+        if(!response.ok){
+            const errorData = await response.json();
+            return rejectWithValue(errorData.message || 'Error al eliminar el proveedor')
+        }
+        return id;
     } catch (error) {
-        throw new Error('Error al eliminar el proveedor')
+        throw rejectWithValue('Error al eliminar el proveedor')
     }
 })
