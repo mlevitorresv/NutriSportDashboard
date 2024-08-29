@@ -40,7 +40,7 @@ export const billSlice = createSlice({
 
         .addCase(createBillToAPIThunk.fulfilled, (state, action) => {
             state.status = "fulfilled"
-            state.data.push(...action.payload)
+            state.data.concat(action.payload)
         })
         .addCase(createBillToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"

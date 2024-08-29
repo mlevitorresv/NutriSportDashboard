@@ -25,7 +25,9 @@ export const getBillFromAPIThunk = createAsyncThunk<BillsInterface[], string | u
     }
 })
 
-export const createBillToAPIThunk = createAsyncThunk("bills/createBillToApi", async (body: BillsInterface): Promise<BillsInterface[]> => {
+export const createBillToAPIThunk = createAsyncThunk(
+    "bills/createBillToApi",
+    async (body: BillsInterface): Promise<BillsInterface[]> => {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest('bills', 'POST', body, token);
