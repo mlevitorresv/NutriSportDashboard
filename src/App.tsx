@@ -17,7 +17,6 @@ import { SalesPage } from './pages/sales/SalesPage';
 import { SalesCreatePage } from './pages/sales/SalesCreatePage';
 import { SuppliersPage } from './pages/suppliers/SuppliersPage';
 import { SuppliersCreatePage } from './pages/suppliers/SuppliersCreatePage';
-import { CommentsCreatePage } from './pages/comments/CommentsCreatePage';
 import { AuthProvider, useAuth } from './context/AuthProvider';
 import { Provider } from 'react-redux'
 import { store } from './app/store';
@@ -45,7 +44,6 @@ function App() {
 
                 {/* COMMENTS */}
                 <Route path='/comments' element={<CommentsPage />} />
-                <Route path='/comments/create' element={<CommentsCreatePage />} />
 
                 {/* CUSTOMERS */}
                 <Route path='/customers' element={<CustomersPage />} />
