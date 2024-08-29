@@ -40,7 +40,7 @@ export const commentSlice = createSlice({
 
         .addCase(deleteCommentToAPIThunk.fulfilled , (state, action) => {
             state.status = "fulfilled"
-            state.data = state.data.filter(comment => comment._id != action.payload._id)
+            state.data = state.data.filter(comment => comment._id != action.payload)
         })
         .addCase(deleteCommentToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"

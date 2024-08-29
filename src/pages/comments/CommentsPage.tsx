@@ -70,8 +70,12 @@ export const CommentsPage = () => {
                             <PhotoDataDiv className='comment' data={comment.comment} />
                         </td>
                         <td>
-                            <PhotoDataDiv data={<TrashStyledIcon onClick={() => handleRemoveComment(comment._id)} />} />
-                        </td>
+                            <PhotoDataDiv data={
+                                <TrashStyledIcon onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleRemoveComment(comment._id);
+                                }} />
+                            } />                        </td>
                     </TrStyled>
                 )
             })

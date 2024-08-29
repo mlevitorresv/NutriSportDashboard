@@ -25,13 +25,18 @@ export const getCommentFromAPIThunk = createAsyncThunk<CommentInterface[], strin
     }
 })
 
-export const deleteCommentToAPIThunk = createAsyncThunk<CommentInterface, string, { state: any, rejectValue: string }>("comments/deleteCommentToApi", async (id: any): Promise<CommentInterface> => {
+export const deleteCommentToAPIThunk = createAsyncThunk<string, string, { rejectValue: string }>(
+    "comments/deleteCommentToApi",
+    async (id: string, { rejectWithValue }) => {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest(`comments/${id}`, 'DELETE', null, token);
-        const responseData = await response.json();
-        return responseData.success;
+        if(!response.ok){
+            const errorData = await response.json();
+            return rejectWithValue(errorData.message || 'Error al eliminar el comentario');
+        }
+        return id;
     } catch (error) {
-        throw new Error('Error al eliminar el comentario')
+        throw rejectWithValue('Error al eliminar el comentario')
     }
 })
