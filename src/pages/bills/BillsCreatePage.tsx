@@ -14,12 +14,18 @@ import { getSupplierData, getSupplierError, getSupplierStatus } from '../../feat
 import { SupplierInterface } from '../../interfaces/suppliersInterface'
 import { getSupplierListFromAPIThunk } from '../../features/suppliers/suppliersThunk'
 import { Spinner } from '../../components/spinner/Spinner'
+import { BillsInterface } from '../../interfaces/billsInterface'
+import { createBillToAPIThunk } from '../../features/bills/billsThunk'
+import { toast } from 'react-toastify'
+import { EmployeeInfoStyledDivFlex } from '../../components/common/EmployeeInfoStyledDivFlex'
+import { ButtonStyled } from '../../components/common/ButtonStyled'
+import { useNavigate } from 'react-router-dom'
 
 export const BillsCreatePage = () => {
 
   const dispatch: AppDispatch = useAppDispatch();
   const [spinner, setSpinner] = useState<boolean>(true);
-
+  const navigate = useNavigate();
 
   const supplierListData = useAppSelector<SupplierInterface[]>(getSupplierData);
   const supplierListError = useAppSelector<string | undefined>(getSupplierError);
@@ -48,41 +54,68 @@ export const BillsCreatePage = () => {
   const paymentAmount = useRef<HTMLInputElement>(null);
   const date = useRef<HTMLInputElement>(null);
 
+  const sendData = async () => {
+    let data: BillsInterface = {
+      _id: undefined,
+      beneficiary: beneficiary.current?.value || '',
+      description: description.current?.value || '',
+      type: type.current?.value || '',
+      paymentAmount: parseFloat(paymentAmount.current?.value || '0'),
+      date: date.current ? new Date(date.current.value) : new Date(),
+    }
 
+    await dispatch(createBillToAPIThunk(data))
+
+    toast.success('Factura creada correctamente', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+    navigate('/bills')
+  }
 
 
   return (
     <>
       {spinner ? <Spinner /> :
         <OneElementBackgroundDiv>
-          <ElementInfoDivStyled>
-            <ElementInfoPStyled size="small"><FaTruckMoving /> Beneficiary</ElementInfoPStyled>
-            <SelectStyled type="creationform" ref={beneficiary} defaultValue={'male'}>
-              {supplierList.map((supplier) => (
-                <option value={supplier._id}>{supplier.name}</option>
-              ))}
-            </SelectStyled>
-          </ElementInfoDivStyled>
-          <ElementInfoDivStyled>
-            <ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled>
-            <TextAreaStyled ref={description} />
-          </ElementInfoDivStyled>
-          <ElementInfoDivStyled>
-            <ElementInfoPStyled size="small"><LuType /> Type</ElementInfoPStyled>
-            <SelectStyled type="creationform" ref={type} defaultValue={'male'}>
-              <option value="compra">Compra</option>
-              <option value="alquiler">Alquiler</option>
-              <option value="nómina">Nómina</option>
-            </SelectStyled>
-          </ElementInfoDivStyled>
-          <ElementInfoDivStyled>
-            <ElementInfoPStyled size="small"><FaSackDollar /> Payment Amount</ElementInfoPStyled>
-            <InputStyled type='number' model="creationform" ref={paymentAmount} />
-          </ElementInfoDivStyled>
-          <ElementInfoDivStyled>
-            <ElementInfoPStyled size="small"><FaCalendarAlt /> Date</ElementInfoPStyled>
-            <InputStyled type='date' model="creationform" ref={date} />
-          </ElementInfoDivStyled>
+          <EmployeeInfoStyledDivFlex dir='col'>
+            <ElementInfoDivStyled>
+              <ElementInfoPStyled size="small"><FaTruckMoving /> Beneficiary</ElementInfoPStyled>
+              <SelectStyled type="creationform" ref={beneficiary}>
+                {supplierList.map((supplier) => (
+                  <option value={supplier._id}>{supplier.name}</option>
+                ))}
+              </SelectStyled>
+            </ElementInfoDivStyled>
+            <ElementInfoDivStyled>
+              <ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled>
+              <TextAreaStyled ref={description} />
+            </ElementInfoDivStyled>
+            <ElementInfoDivStyled>
+              <ElementInfoPStyled size="small"><LuType /> Type</ElementInfoPStyled>
+              <SelectStyled type="creationform" ref={type} defaultValue={'male'}>
+                <option value="compra">Shop</option>
+                <option value="alquiler">Rent</option>
+                <option value="nómina">Payroll</option>
+              </SelectStyled>
+            </ElementInfoDivStyled>
+            <ElementInfoDivStyled>
+              <ElementInfoPStyled size="small"><FaSackDollar /> Payment Amount</ElementInfoPStyled>
+              <InputStyled type='number' model="creationform" ref={paymentAmount} />
+            </ElementInfoDivStyled>
+            <ElementInfoDivStyled>
+              <ElementInfoPStyled size="small"><FaCalendarAlt /> Date</ElementInfoPStyled>
+              <InputStyled type='date' model="creationform" ref={date} />
+            </ElementInfoDivStyled>
+            <ButtonStyled onClick={sendData}>CREATE BILL</ButtonStyled>
+          </EmployeeInfoStyledDivFlex>
         </OneElementBackgroundDiv>
       }
     </>
