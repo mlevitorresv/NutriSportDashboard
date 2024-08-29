@@ -17,6 +17,8 @@ import { Tfooter } from '../../components/table/Tfooter';
 import { ListStyled } from '../../components/common/ListStyled';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
 import { Spinner } from '../../components/spinner/Spinner';
+import { ButtonStyled } from '../../components/common/ButtonStyled';
+import { useNavigate } from 'react-router-dom';
 
 export const BillsPage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -36,6 +38,8 @@ export const BillsPage = () => {
   const [showShop, setShowShop] = useState<boolean>(false)
   const [showRent, setShowRent] = useState<boolean>(false)
   const [showPayroll, setShowPayroll] = useState<boolean>(false)
+
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -152,11 +156,14 @@ export const BillsPage = () => {
   return (
     <>
       <MenuStyled>
-        <InputStyled
-          type='secondary'
-          placeholder='Find by description'
-          onChange={(e) => setSearchDescription(e.target.value)}
-        />
+        <div>
+          <InputStyled
+            type='secondary'
+            placeholder='Find by description'
+            onChange={(e) => setSearchDescription(e.target.value)}
+          />
+          <ButtonStyled color='white' bg='#135846' onClick={() => navigate(`/bills/create`)}> Create Bill</ButtonStyled>
+        </div>
         <div>
           <ListStyled>
             <ListElementStyled
