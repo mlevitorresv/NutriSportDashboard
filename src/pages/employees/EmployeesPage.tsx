@@ -158,7 +158,7 @@ export const EmployeesPage = () => {
             <MenuStyled>
                 <div>
                     <InputStyled
-                        type='secondary'
+                        model='secondary'
                         placeholder="Find by employee's name"
                         onChange={(e) => setSearchDescription(e.target.value)}
                     />

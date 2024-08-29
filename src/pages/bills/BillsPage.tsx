@@ -158,7 +158,7 @@ export const BillsPage = () => {
       <MenuStyled>
         <div>
           <InputStyled
-            type='secondary'
+            model='secondary'
             placeholder='Find by description'
             onChange={(e) => setSearchDescription(e.target.value)}
           />

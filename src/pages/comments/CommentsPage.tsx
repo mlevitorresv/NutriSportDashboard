@@ -124,7 +124,7 @@ export const CommentsPage = () => {
         <>
             <MenuStyled>
                 <InputStyled
-                    type='secondary'
+                    model='secondary'
                     placeholder='Find by comment'
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />

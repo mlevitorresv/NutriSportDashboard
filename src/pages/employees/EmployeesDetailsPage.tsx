@@ -76,19 +76,19 @@ export const EmployeesDetailsPage = () => {
                         <ButtonStyled>UPDATE {employeeData?.name.split(' ')[0].toUpperCase()}</ButtonStyled>
                     </EmployeeInfoStyledDivFlex>
                     <EmployeeInfoStyledDivFlex dir="col">
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.name} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.birth.toString().split('T')[0]} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.gender} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.DNI} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.email} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.phone} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.postalCode} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.address} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.job} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.startDate.toString().split('T')[0]} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.socialSecurity} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><InputStyled type="creationform" value={employeeData?.contract} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><InputStyled type="creationform" value={`ES********${employeeData?.bankAccount.substring(10, 14)}`} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.name} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.birth.toString().split('T')[0]} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.gender} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.DNI} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.email} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.phone} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.postalCode} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.address} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.job} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.startDate.toString().split('T')[0]} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.socialSecurity} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled><InputStyled model="creationform" value={employeeData?.contract} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled><InputStyled model="creationform" value={`ES********${employeeData?.bankAccount.substring(10, 14)}`} /></ElementInfoDivStyled>
                     </EmployeeInfoStyledDivFlex>
                     <SmallTableStyled>
                         <H1Styled>Related employees</H1Styled>

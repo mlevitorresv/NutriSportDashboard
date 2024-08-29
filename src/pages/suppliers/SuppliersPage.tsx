@@ -144,7 +144,7 @@ export const SuppliersPage = () => {
         <>
             <MenuStyled>
                 <InputStyled
-                    type='secondary'
+                    model='secondary'
                     placeholder="Find by supplier's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />

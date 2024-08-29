@@ -70,18 +70,18 @@ export const BillsCreatePage = () => {
           <ElementInfoDivStyled>
             <ElementInfoPStyled size="small"><LuType /> Type</ElementInfoPStyled>
             <SelectStyled type="creationform" ref={type} defaultValue={'male'}>
-              <option value="male" selected>Male</option>
-              <option value="female">Female</option>
-              <option value="Other">Other</option>
+              <option value="compra">Compra</option>
+              <option value="alquiler">Alquiler</option>
+              <option value="nómina">Nómina</option>
             </SelectStyled>
           </ElementInfoDivStyled>
           <ElementInfoDivStyled>
             <ElementInfoPStyled size="small"><FaSackDollar /> Payment Amount</ElementInfoPStyled>
-            <InputStyled type="creationform" ref={paymentAmount} />
+            <InputStyled type='number' model="creationform" ref={paymentAmount} />
           </ElementInfoDivStyled>
           <ElementInfoDivStyled>
             <ElementInfoPStyled size="small"><FaCalendarAlt /> Date</ElementInfoPStyled>
-            <InputStyled type="creationform" ref={date} />
+            <InputStyled type='date' model="creationform" ref={date} />
           </ElementInfoDivStyled>
         </OneElementBackgroundDiv>
       }

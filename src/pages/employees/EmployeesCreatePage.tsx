@@ -81,15 +81,15 @@ export const EmployeesCreatePage = () => {
                 <EmployeeInfoStyledDivFlex box='grid'>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><MdAddPhotoAlternate /> Photo</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={photo} />
+                        <InputStyled model="creationform" ref={photo} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaUser /> Name</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={name} />
+                        <InputStyled model="creationform" ref={name} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={birth} />
+                        <InputStyled model="creationform" ref={birth} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled>
@@ -101,35 +101,35 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaAddressCard /> DNI</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={dni} />
+                        <InputStyled model="creationform" ref={dni} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={email} />
+                        <InputStyled model="creationform" ref={email} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={phone} />
+                        <InputStyled model="creationform" ref={phone} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={postalcode} />
+                        <InputStyled model="creationform" ref={postalcode} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={address} />
+                        <InputStyled model="creationform" ref={address} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaBriefcase /> Job</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={job} />
+                        <InputStyled model="creationform" ref={job} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={startdate} />
+                        <InputStyled model="creationform" ref={startdate} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={socialsec} />
+                        <InputStyled model="creationform" ref={socialsec} />
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaFileContract /> Contract</ElementInfoPStyled>
@@ -141,7 +141,7 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><BsBank2 /> Bank Account</ElementInfoPStyled>
-                        <InputStyled type="creationform" ref={bankAccount} />
+                        <InputStyled model="creationform" ref={bankAccount} />
                     </ElementInfoDivStyled>
                 </EmployeeInfoStyledDivFlex>
             </OneElementBackgroundDiv>

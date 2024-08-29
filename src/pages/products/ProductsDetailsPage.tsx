@@ -57,17 +57,17 @@ export const ProductsDetailsPage = () => {
             {spinner ? <Spinner /> :
                 <OneElementBackgroundDiv direction="column">
                     <ProductInfoStyledDiv col={3}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><InputStyled type="creationform" value={productData?.name}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><InputStyled type="creationform" value={productData?.brand}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><InputStyled type="creationform" value={productData?.SKU}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><InputStyled type="creationform" value={productData?.category}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><InputStyled type="creationform" value={`${productData?.PVP}€`}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><InputStyled type="creationform" value={productData?.stock}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><InputStyled model="creationform" value={productData?.name}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><InputStyled model="creationform" value={productData?.brand}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><InputStyled model="creationform" value={productData?.SKU}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><InputStyled model="creationform" value={productData?.category}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><InputStyled model="creationform" value={`${productData?.PVP}€`}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><InputStyled model="creationform" value={productData?.stock}/></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={2}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><InputStyled type="creationform" value={productData?.description} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><InputStyled type="creationform" value={productData?.ingredients}/></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><InputStyled model="creationform" value={productData?.description} /></ElementInfoDivStyled>
+                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><InputStyled model="creationform" value={productData?.ingredients}/></ElementInfoDivStyled>
                     </ProductInfoStyledDiv>
 
                     <ProductInfoStyledDiv col={3}>

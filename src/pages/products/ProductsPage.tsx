@@ -140,7 +140,7 @@ export const ProductsPage = () => {
         <>
             <MenuStyled>
                 <InputStyled
-                    type='secondary'
+                    model='secondary'
                     placeholder="Find by product's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />

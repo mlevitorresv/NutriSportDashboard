@@ -75,8 +75,8 @@ export const LoginPage = () => {
         <FormLoginStyled onSubmit={handleLogin}>
           <H1Styled center={true}>Bienvenido al programa de gestión de </H1Styled>
           <Link to='/' className='loginForm__image'><img src="src\assets\logo.JPG" alt="NutriSport logo" /></Link>
-          <InputStyled type="email" name="emailInput" id="emailInput" placeholder='email@email.com' onChange={handleChangeEmail} />
-          <InputStyled type="password" name="passInput" id="passInput" placeholder='password' onChange={handleChangePass} />
+          <InputStyled model="email" name="emailInput" id="emailInput" placeholder='email@email.com' onChange={handleChangeEmail} />
+          <InputStyled model="password" name="passInput" id="passInput" placeholder='password' onChange={handleChangePass} />
           <ButtonStyled type='submit'>SIGN IN</ButtonStyled>
         </FormLoginStyled>
       </PageFormStyled>
