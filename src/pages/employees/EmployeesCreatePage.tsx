@@ -89,7 +89,7 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaBirthdayCake /> Birth</ElementInfoPStyled>
-                        <InputStyled model="creationform" ref={birth} />
+                        <InputStyled model="creationform" ref={birth} type="date"/>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaTransgender /> Gender</ElementInfoPStyled>
@@ -105,7 +105,7 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><MdMailOutline /> Email</ElementInfoPStyled>
-                        <InputStyled model="creationform" ref={email} />
+                        <InputStyled model="creationform" ref={email} type="email"/>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaPhoneAlt /> Phone</ElementInfoPStyled>
@@ -113,7 +113,7 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaLocationDot /> Postal Code</ElementInfoPStyled>
-                        <InputStyled model="creationform" ref={postalcode} />
+                        <InputStyled model="creationform" ref={postalcode} type="number"/>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaMapLocation /> Address</ElementInfoPStyled>
@@ -125,7 +125,7 @@ export const EmployeesCreatePage = () => {
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaCalendarAlt /> Start Date</ElementInfoPStyled>
-                        <InputStyled model="creationform" ref={startdate} />
+                        <InputStyled model="creationform" ref={startdate} type="date"/>
                     </ElementInfoDivStyled>
                     <ElementInfoDivStyled>
                         <ElementInfoPStyled size="small"><FaHospitalAlt /> Social Security</ElementInfoPStyled>

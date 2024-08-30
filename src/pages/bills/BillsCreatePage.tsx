@@ -90,7 +90,7 @@ export const BillsCreatePage = () => {
               <ElementInfoPStyled size="small"><FaTruckMoving /> Beneficiary</ElementInfoPStyled>
               <SelectStyled type="creationform" ref={beneficiary}>
                 {supplierList.map((supplier) => (
-                  <option value={supplier._id}>{supplier.name}</option>
+                  <option value={supplier.name}>{supplier.name}</option>
                 ))}
               </SelectStyled>
             </ElementInfoDivStyled>
