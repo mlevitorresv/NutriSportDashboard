@@ -40,7 +40,7 @@ export const customerSlice = createSlice({
 
         .addCase(createCustomerToAPIThunk.fulfilled, (state, action) => {
             state.status = "fulfilled"
-            state.data.push(...action.payload)
+            state.data.concat(action.payload)
         })
         .addCase(createCustomerToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"

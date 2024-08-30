@@ -17,10 +17,13 @@ import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
 import { ListStyled } from '../../components/common/ListStyled';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
+import { ButtonStyled } from '../../components/common/ButtonStyled';
+import { useNavigate } from 'react-router-dom';
 
 
 export const CustomersPage = () => {
     const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate();
     const customerListData = useAppSelector<CustomerInterface[]>(getCustomerData);
     const customerListMens = useAppSelector<CustomerInterface[]>(getMensCustomer);
     const customerListWomens = useAppSelector<CustomerInterface[]>(getWomensCustomer);
@@ -151,11 +154,14 @@ export const CustomersPage = () => {
     return (
         <>
             <MenuStyled>
-                <InputStyled
-                    model='secondary'
-                    placeholder="Find by customer's name"
-                    onChange={(e) => setSearchDescription(e.target.value)}
-                />
+                <div>
+                    <InputStyled
+                        model='secondary'
+                        placeholder="Find by customer's name"
+                        onChange={(e) => setSearchDescription(e.target.value)}
+                    />
+                    <ButtonStyled color='white' bg='#135846' onClick={() => navigate(`/customers/create`)}> Create Customer</ButtonStyled>
+                </div>
                 <div>
                     <ListStyled>
                         <ListElementStyled

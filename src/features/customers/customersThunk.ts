@@ -25,7 +25,9 @@ export const getCustomerFromAPIThunk = createAsyncThunk<CustomerInterface[], str
     }
 })
 
-export const createCustomerToAPIThunk = createAsyncThunk("customers/createCustomerToApi", async (body: CustomerInterface): Promise<CustomerInterface[]> => {
+export const createCustomerToAPIThunk = createAsyncThunk(
+    "customers/createCustomerToApi",
+    async (body: CustomerInterface): Promise<CustomerInterface[]> => {
     try {
         const token = sessionStorage.getItem('token');
         const response = await apiRequest('customers', 'POST', body, token);
