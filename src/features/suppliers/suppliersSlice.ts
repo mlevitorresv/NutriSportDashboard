@@ -40,7 +40,7 @@ export const supplierSlice = createSlice({
 
         .addCase(createSupplierToAPIThunk.fulfilled, (state, action) => {
             state.status = "fulfilled"
-            state.data.push(...action.payload)
+            state.data.concat(action.payload)
         })
         .addCase(createSupplierToAPIThunk.rejected, (state, action) => {
             state.status = "rejected"

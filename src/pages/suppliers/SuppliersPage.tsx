@@ -17,10 +17,13 @@ import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
 import { ListElementStyled } from '../../components/common/ListElementStyled';
 import { ListStyled } from '../../components/common/ListStyled';
+import { ButtonStyled } from '../../components/common/ButtonStyled';
+import { useNavigate } from 'react-router-dom';
 
 
 export const SuppliersPage = () => {
     const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate();
     const supplierListData = useAppSelector<SupplierInterface[]>(getSupplierData);
     const supplierListProducts = useAppSelector<SupplierInterface[]>(getSupplierProducts);
     const supplierListRent = useAppSelector<SupplierInterface[]>(getSupplierRent);
@@ -143,11 +146,14 @@ export const SuppliersPage = () => {
     return (
         <>
             <MenuStyled>
-                <InputStyled
-                    model='secondary'
-                    placeholder="Find by supplier's name"
-                    onChange={(e) => setSearchDescription(e.target.value)}
-                />
+                <div>
+                    <InputStyled
+                        model='secondary'
+                        placeholder="Find by supplier's name"
+                        onChange={(e) => setSearchDescription(e.target.value)}
+                    />
+                    <ButtonStyled color='white' bg='#135846' onClick={() => navigate(`/suppliers/create`)}> Create Supplier</ButtonStyled>
+                </div>
                 <div>
                     <ListStyled>
                         <ListElementStyled

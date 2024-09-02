@@ -30,7 +30,7 @@ export const createSupplierToAPIThunk = createAsyncThunk("suppliers/createSuppli
         const token = sessionStorage.getItem('token');
         const response = await apiRequest('suppliers', 'POST', body, token);
         const responseData = await response.json();
-        return responseData.suppliers;
+        return responseData;
     } catch (error) {
         throw new Error('Error al crear el proveedor')
     }
