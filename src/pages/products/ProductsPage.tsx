@@ -16,6 +16,7 @@ import { TheadStyled } from '../../components/table/TheadStyled';
 import { Tfooter } from '../../components/table/Tfooter';
 import { Spinner } from '../../components/spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
+import { ButtonStyled } from '../../components/common/ButtonStyled';
 
 
 export const ProductsPage = () => {
@@ -144,6 +145,8 @@ export const ProductsPage = () => {
                     placeholder="Find by product's name"
                     onChange={(e) => setSearchDescription(e.target.value)}
                 />
+            <ButtonStyled color='white' bg='#135846' onClick={() => navigate(`/products/create`)}> Create Product</ButtonStyled>
+
                 <SelectStyled onChange={(e) => setSelectedSort(e.target.value)}>
                     <option value="name" selected>Name</option>
                     <option value="sku">SKU</option>
