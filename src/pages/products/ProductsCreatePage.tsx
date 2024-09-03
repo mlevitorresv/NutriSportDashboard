@@ -10,7 +10,7 @@ import { ButtonStyled } from "../../components/common/ButtonStyled";
 import { ProductInfoStyledDiv } from "../../components/common/ProductInfoStyledDiv";
 import { FaBarcode, FaJar, FaSackDollar } from "react-icons/fa6";
 import { TbCircleLetterB, TbCircleLetterC, TbMeat } from "react-icons/tb";
-import { MdDescription, MdWarehouse } from "react-icons/md";
+import { MdAddPhotoAlternate, MdDescription, MdWarehouse } from "react-icons/md";
 import { ProductImgStyled } from "../../components/common/ProductImgStyled";
 
 export const ProductsCreatePage = () => {
@@ -43,28 +43,27 @@ export const ProductsCreatePage = () => {
     return (
         <>
             <OneElementBackgroundDiv direction="column">
-                    <ProductInfoStyledDiv col={3}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><InputStyled model="creationform" value={productData?.name}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><InputStyled model="creationform" value={productData?.brand}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><InputStyled model="creationform" value={productData?.SKU}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><InputStyled model="creationform" value={productData?.category}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><InputStyled model="creationform" value={`${productData?.PVP}€`}/></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><InputStyled model="creationform" value={productData?.stock}/></ElementInfoDivStyled>
-                    </ProductInfoStyledDiv>
+                <ProductInfoStyledDiv col={3}>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaJar /> Name</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterB /> Brand</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaBarcode /> SKU</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbCircleLetterC /> Category</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><FaSackDollar /> PVP</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdWarehouse /> Stock</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                </ProductInfoStyledDiv>
 
-                    <ProductInfoStyledDiv col={2}>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><InputStyled model="creationform" value={productData?.description} /></ElementInfoDivStyled>
-                        <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><InputStyled model="creationform" value={productData?.ingredients}/></ElementInfoDivStyled>
-                    </ProductInfoStyledDiv>
+                <ProductInfoStyledDiv col={2}>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdDescription /> Description</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><TbMeat /> Ingredients</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                </ProductInfoStyledDiv>
 
-                    <ProductInfoStyledDiv col={3}>
-                        {productData?.photos.map((element, index) => (
-                            <ProductImgStyled src={element} alt={`${element} photo`} key={index} />
-                        ))}
-                    </ProductInfoStyledDiv>
+                <ProductInfoStyledDiv col={1}>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdAddPhotoAlternate /> Photo 1</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdAddPhotoAlternate /> Photo 2</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                    <ElementInfoDivStyled><ElementInfoPStyled size="small"><MdAddPhotoAlternate /> Photo 3</ElementInfoPStyled><InputStyled model="creationform" /></ElementInfoDivStyled>
+                </ProductInfoStyledDiv>
 
-                    
-                </OneElementBackgroundDiv>
+            </OneElementBackgroundDiv>
         </>
     )
 }
